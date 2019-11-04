@@ -22,10 +22,10 @@ public class Equipment : Item {
 		EquipmentManager.instance.Equip(this);	// Equip
 		RemoveFromInventory();	// Remove from inventory
         
-        if (equipSlot.Equals(EquipmentSlot.Weapon))
-        {
-            this.gameObject.transform.parent = weaponBone.transform;
-        }
+        //if (equipSlot.Equals(EquipmentSlot.Weapon))
+        //{
+        //    this.gameObject.transform.parent = weaponBone.transform;
+        //}
 	}
 
 }

@@ -92,8 +92,8 @@ public class EquipmentManager : MonoBehaviour {
 		}
         if (newItem.equipSlot == EquipmentSlot.Weapon)
         {
-            Instantiate(newItem.gameObject);
-            newItem.gameObject.transform.parent = GameObject.FindGameObjectWithTag("MainWeaponBone").transform;
+            newItem.gameObject.SetActive(true);
+            newItem.gameObject.transform.SetParent(GameObject.FindGameObjectWithTag("MainWeaponBone").transform);
         }
 		//equippedItems [itemIndex] = newMesh.gameObject;
 
