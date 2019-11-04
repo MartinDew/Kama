@@ -22,7 +22,7 @@ public class DialogueManager : MonoBehaviour
 
         Debug.Log("Starting conversation with " + dialogue.npcName);
 
-        //nameText.text = dialogue.npcName;
+        nameText.text = dialogue.npcName;
 
         sentences.Clear();
 
@@ -43,10 +43,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
-        Debug.Log(sentence);
-        //dialogueText.text = sentence;
-        //StopAllCoroutines();
-        //StartCoroutine(TypeSentence(sentence));
+        //Debug.Log(sentence);
+        dialogueText.text = sentence;
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
     }
 
     IEnumerator TypeSentence(string sentence)
