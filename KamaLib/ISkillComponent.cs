@@ -13,6 +13,6 @@ namespace KamaLib
         void SpendSp(float amount);
         void IncreaseSp(float amount);
 
-        void Initializer(float maxSp, float sp);
+        void Initialize(float maxSp, float sp);
     }
 }

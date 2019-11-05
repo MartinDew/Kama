@@ -1,42 +1,27 @@
 ﻿using UnityEngine;
+using KamaLib;
 
-public class LevelUpComponent : MonoBehaviour
+public class LevelUpComponent : MonoBehaviour, ILevelComponent
 {
-    private int CurrentLevel;
-    private int EXP;
-    private int maxEXP = defaultEXP;
-    private bool isMaxLevel = false;
-    private bool attackPoints;
-    private bool skillPoints;
-    public int enemyLevel; // for testing
+    public LevelClass levelClass;
+    public int CurrentLevel => levelClass.CurrentLevel;
+    //public int CurrentATK => levelClass.CurrentATK;
+    //public int CurrentDEF => levelClass.CurrentDEF;
+    //public int CurrentEXP => levelClass.CurrentEXP;
+    //public int maxEXP => levelClass.maxEXP;
+    public int maxLevel => levelClass.maxLevel;
+    public bool isMaxLevel => levelClass.isMaxLevel;
+    public void Initialize(int level, int maxlevel) => levelClass = new LevelClass(level, maxlevel);
+    public void LevelUp() => levelClass.LevelUp();
 
-    private const int maxLevel = 50;
-    private const int defaultEXP = 100; // for the first level, maxEXP is 100
+    //public void UpdateATK(int atk) => levelClass.UpdateATK(atk);
+    //public void UpdateDEF(int def) => levelClass.UpdateDEF(def);
+    //public void UpdateEXP(int exp) => levelClass.UpdateEXP(exp);
+    //public void InitializeLevel(int level, int maxlevel) =>  levelClass.InitializeLevel(level, maxlevel);
+    //public void InitializeATK(int atk) => levelClass.InitializeATK(atk);
+    //public void InitializeDEF(int def) => levelClass.InitializeDEF(def);
+    //public void InitializeEXP(int exp, int maxexp) => levelClass.InitializeEXP(exp, maxexp);
 
-    public void UpdateEXP(int exp)
-    {
-        if (!isMaxLevel)
-        {
-            EXP += exp;
-            if (EXP >= maxEXP)
-            {
-                LevelUp();
-                maxEXP += 100;
-                // Method: choose if you want atk or def
-            }
-            Debug.Log("EXP before next level: " + (maxEXP - EXP));
-        }
-        Debug.Log("You are at max level");
-    }
-
-    private void LevelUp()
-    {
-        CurrentLevel++;
-        EXP = 0;
-        if (CurrentLevel == maxLevel)
-            isMaxLevel = true;
-        Debug.Log("You are now level " + CurrentLevel);
-    }
-
-    private void GainEXP() => UpdateEXP(enemyLevel * 10);
+    //public void Initialize(int setlevel, int setmaxlevel, int setatk, int setdef, int setexp, int setmaxexp, float hp, float maxhp, float sp, float maxsp)
+    //   => levelClass = new LevelClass(setlevel, setmaxlevel, setatk, setdef, setexp, setmaxexp, hp, maxhp, sp, maxsp);
 }

@@ -13,6 +13,6 @@ namespace KamaLib
         void TakeDamage(float damage);
         void Increase(float amount);
 
-        void Initialiser(float maxHp, float hp);
+        void Initialize(float maxHp, float hp);
     }
 }

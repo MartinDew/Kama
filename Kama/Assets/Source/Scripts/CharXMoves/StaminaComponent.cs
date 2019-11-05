@@ -36,7 +36,7 @@ public class StaminaComponent : MonoBehaviour, ISkillComponent
             IncreaseSp(0.005f * (Time.deltaTime * 1000));
     }
 
-    public void Initializer(float maxSp, float sp)
+    public void Initialize(float maxSp, float sp)
     {
         stamina = new Stamina(sp, maxSp);
     }

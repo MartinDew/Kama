@@ -7,6 +7,7 @@ using KamaLib;
 [RequireComponent(typeof(IHealthComponent))]
 [RequireComponent(typeof(IAttackComponent))]
 [RequireComponent(typeof(ISkillComponent))]
+[RequireComponent(typeof(ILevelComponent))]
 public class PlayerComponent : MonoBehaviour
 {
     // public GameObject target;
@@ -16,8 +17,7 @@ public class PlayerComponent : MonoBehaviour
     public IAttackComponent AttackComponent => player.AttackComponent;
     public ISkillComponent SkillComponent => player.SkillComponent;
     public float SkillConsumption = 5;
-
-    //public LevelUpComponent levelUpComponent => player.
+    public ILevelComponent LevelComponent => player.LevelComponent;
 
     GameObject inventory;
 
@@ -29,6 +29,7 @@ public class PlayerComponent : MonoBehaviour
             AttackComponent = GetComponent<IAttackComponent>(),
             HealthComponent = GetComponent<IHealthComponent>(),
             SkillComponent = GetComponent<ISkillComponent>(),
+            LevelComponent = GetComponent<ILevelComponent>()
         };
     }
 
@@ -82,8 +83,11 @@ public class PlayerComponent : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
 
-        HealthComponent.Initialiser(data.MaxHP, data.HP);
-        SkillComponent.Initializer(data.MaxSP, data.SP);
+        HealthComponent.Initialize(data.MaxHP, data.HP);
+        SkillComponent.Initialize(data.MaxSP, data.SP);
+        LevelComponent.Initialize(data.currentLevel, data.maxLevel);
+
+        //Debug.Log(LevelComponent.CurrentLevel);
     }
 
     public PlayerClass returnPlayerClass() => player;

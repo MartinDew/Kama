@@ -10,6 +10,12 @@ public class PlayerData
     public float MaxHP;
     public float SP;
     public float MaxSP;
+    public int currentLevel;
+    public int maxLevel;
+    //public int currentATK;
+    //public int currentDEF;
+    //public int currentEXP;
+    //public int maxEXP;
 
     public PlayerData(PlayerComponent player)
     {
@@ -22,5 +28,8 @@ public class PlayerData
         MaxHP = player.HealthComponent.MaxHP;
         SP = player.SkillComponent.Sp;
         MaxSP = player.SkillComponent.MaxSp;
+
+        currentLevel = player.LevelComponent.CurrentLevel;
+        maxLevel = player.LevelComponent.maxLevel;
     }
 }

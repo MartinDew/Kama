@@ -10,6 +10,6 @@ namespace KamaLib
         public IHealthComponent HealthComponent { get; set; }
         public IAttackComponent AttackComponent { get; set; }
         public ISkillComponent SkillComponent { get; set; }
-        public ILevelComponent
+        public ILevelComponent LevelComponent { get; set; }
     }
 }
