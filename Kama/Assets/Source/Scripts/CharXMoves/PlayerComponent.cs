@@ -17,6 +17,8 @@ public class PlayerComponent : MonoBehaviour
     public ISkillComponent SkillComponent => player.SkillComponent;
     public float SkillConsumption = 5;
 
+    //public LevelUpComponent levelUpComponent => player.
+
     GameObject inventory;
 
     private void Awake()
