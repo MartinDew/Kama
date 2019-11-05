@@ -5,18 +5,25 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Consumable")]
 public class Consumable : Item {
 
-	public int healthGain;		// How much health?
+    public int healthGain;
+    GameObject player;
+    bool instanciated = false;
 
-	// This is called when pressed in the inventory
-	public override void Use()
+    // This is called when pressed in the inventory
+    public override void Use()
 	{
-		// Heal the player
-		PlayerStats playerStats = Player.instance.playerStats;
-		playerStats.Heal(healthGain);
+        if (!instanciated)
+        {
+            player = GameObject.FindGameObjectWithTag("Main Character");
+            instanciated = true;
+        }
+
+        // Heal the player
+        player.GetComponent<StandartHealthComponent>().Increase(healthGain);
 
 		Debug.Log(name + " consumed!");
 
-		RemoveFromInventory();	// Remove the item after use
+        // Remove the item after use
+        RemoveFromInventory();	
 	}
-
 }
