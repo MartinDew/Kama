@@ -85,7 +85,7 @@ public class PlayerComponent : MonoBehaviour
 
         HealthComponent.Initialize(data.MaxHP, data.HP);
         SkillComponent.Initialize(data.MaxSP, data.SP);
-        LevelComponent.Initialize(data.currentLevel, data.maxLevel);
+        //LevelComponent.Initialize(data.currentLevel, data.maxLevel);
     }
 
     public PlayerClass returnPlayerClass() => player;

@@ -10,13 +10,13 @@ public class PlayerData
     public float MaxHP;
     public float SP;
     public float MaxSP;
+
     public int currentLevel;
     public int maxLevel;
+    public int currentEXP;
+    public int maxEXP;
     //public int currentATK;
     //public int currentDEF;
-    //public int currentEXP;
-    //public int maxEXP;
-
     public PlayerData(PlayerComponent player)
     {
         position = new float[3];
@@ -31,5 +31,7 @@ public class PlayerData
 
         currentLevel = player.LevelComponent.CurrentLevel;
         maxLevel = player.LevelComponent.maxLevel;
+        currentEXP = player.LevelComponent.CurrentEXP;
+        maxEXP = player.LevelComponent.maxEXP;
     }
 }
