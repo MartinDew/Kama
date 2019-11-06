@@ -1,27 +1,23 @@
-﻿using UnityEngine;
-using KamaLib;
+﻿using KamaLib;
+using System;
+using UnityEngine;
 
 public class LevelUpComponent : MonoBehaviour, ILevelComponent
 {
     public LevelClass levelClass;
+    public const int defaultLevel = 1;
+    public Action OnExpChanged { get => levelClass.OnExpChanged; set => levelClass.OnExpChanged = value; }
     public int CurrentLevel => levelClass.CurrentLevel;
-    //public int CurrentATK => levelClass.CurrentATK;
-    //public int CurrentDEF => levelClass.CurrentDEF;
-    //public int CurrentEXP => levelClass.CurrentEXP;
-    //public int maxEXP => levelClass.maxEXP;
+    public float CurrentATK => levelClass.CurrentATK;
+    public int CurrentEXP => levelClass.CurrentEXP;
+    public int maxEXP => levelClass.maxEXP;
     public int maxLevel => levelClass.maxLevel;
     public bool isMaxLevel => levelClass.isMaxLevel;
-    public void Initialize(int level, int maxlevel) => levelClass = new LevelClass(level, maxlevel);
-    public void LevelUp() => levelClass.LevelUp();
-
-    //public void UpdateATK(int atk) => levelClass.UpdateATK(atk);
-    //public void UpdateDEF(int def) => levelClass.UpdateDEF(def);
-    //public void UpdateEXP(int exp) => levelClass.UpdateEXP(exp);
-    //public void InitializeLevel(int level, int maxlevel) =>  levelClass.InitializeLevel(level, maxlevel);
-    //public void InitializeATK(int atk) => levelClass.InitializeATK(atk);
-    //public void InitializeDEF(int def) => levelClass.InitializeDEF(def);
-    //public void InitializeEXP(int exp, int maxexp) => levelClass.InitializeEXP(exp, maxexp);
-
-    //public void Initialize(int setlevel, int setmaxlevel, int setatk, int setdef, int setexp, int setmaxexp, float hp, float maxhp, float sp, float maxsp)
-    //   => levelClass = new LevelClass(setlevel, setmaxlevel, setatk, setdef, setexp, setmaxexp, hp, maxhp, sp, maxsp);
+    public float CurrentHP => levelClass.CurrentHP;
+    public float CurrentSP => levelClass.CurrentSP;
+    public void Initialize(int level, int maxlevel, int exp, int maxexp, float atk, float hp, float sp) => levelClass = new LevelClass(level, maxlevel, exp, maxexp, atk, hp, sp);
+    public void LevelUp() =>  levelClass.LevelUp();
+    public void UpdateEXP(int exp) => levelClass.UpdateEXP(exp);
+    private void Awake() => levelClass = new LevelClass(defaultLevel, maxLevel, CurrentEXP, maxEXP, CurrentATK, CurrentHP, CurrentSP);
+    public void UpdateATK(float atk) => levelClass.UpdateATK(atk);
 }

@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using KamaLib;
+using UnityEngine.UI;
 
 //[RequireComponent(typeof(IAttackComponent))]
 [RequireComponent(typeof(IHealthComponent))]
@@ -18,8 +17,9 @@ public class PlayerComponent : MonoBehaviour
     public ISkillComponent SkillComponent => player.SkillComponent;
     public float SkillConsumption = 5;
     public ILevelComponent LevelComponent => player.LevelComponent;
-
+    public Text levelText;
     GameObject inventory;
+    bool isDead = false;
 
     private void Awake()
     {
@@ -31,6 +31,7 @@ public class PlayerComponent : MonoBehaviour
             SkillComponent = GetComponent<ISkillComponent>(),
             LevelComponent = GetComponent<ILevelComponent>()
         };
+        LevelComponent.Initialize(LevelUpComponent.defaultLevel, LevelComponent.maxLevel, 0, LevelComponent.maxEXP, AttackComponent.baseDamage, HealthComponent.HP, SkillComponent.Sp);
     }
 
     private void Start()
@@ -42,12 +43,21 @@ public class PlayerComponent : MonoBehaviour
     private void Update()
     {
         if (Input.GetButtonDown("Fire1") && SkillComponent.Sp > SkillConsumption && !inventory.activeSelf)
-            Attack();
+            if (!isDead)
+                Attack();
 
         if (Input.GetKeyDown(KeyCode.Backspace))
-        {
             HealthComponent.TakeDamage(10);
+
+        if (HealthComponent.HP <= 0 && !isDead)
+        {
+            isDead = true;
+            GetComponent<Animator>().SetBool("dead", true);
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DirectedCameraController>().enabled = false;
         }
+        levelText.text = "Niveau\n" + LevelComponent.CurrentLevel;
+        HealthComponent.Initialize(LevelComponent.CurrentHP, HealthComponent.HP);
+        SkillComponent.Initialize(LevelComponent.CurrentSP, SkillComponent.Sp);
     }
 
     private void Attack()
@@ -63,16 +73,11 @@ public class PlayerComponent : MonoBehaviour
         if (Physics.Raycast(origin, forward, out hit, AttackComponent.getTotalRange()))
         {
             if (hit.transform.gameObject.tag == "Ennemy")
-            {
                 hit.transform.gameObject.SendMessage("TakeDamage", AttackComponent.Attack());
-            }
         }
     }
 
-    public void SavePlayer()
-    {
-        SaveSystem.SavePlayer(this);
-    }
+    public void SavePlayer() => SaveSystem.SavePlayer(this);
 
     public void LoadPlayer()
     {
@@ -85,10 +90,6 @@ public class PlayerComponent : MonoBehaviour
 
         HealthComponent.Initialize(data.MaxHP, data.HP);
         SkillComponent.Initialize(data.MaxSP, data.SP);
-        LevelComponent.Initialize(data.currentLevel, data.maxLevel);
-
-        //Debug.Log(LevelComponent.CurrentLevel);
+        //LevelComponent.Initialize(data.currentLevel, data.maxLevel, data.currentEXP, data.maxEXP, data.currentATK);
     }
-
-    public PlayerClass returnPlayerClass() => player;
 }

@@ -2007,6 +2007,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ennemyController: {fileID: 0}
+  Level: 1
+  player: {fileID: 0}
 --- !u!114 &9117139127557096937
 MonoBehaviour:
   m_ObjectHideFlags: 0

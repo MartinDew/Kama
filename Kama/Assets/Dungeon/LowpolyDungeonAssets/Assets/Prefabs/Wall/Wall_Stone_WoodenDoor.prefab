@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33171198483324784}
   - component: {fileID: 23719127669014560}
   - component: {fileID: 913452404187186440}
+  - component: {fileID: 7901272183033354421}
+  - component: {fileID: 6812793049961909161}
   m_Layer: 0
   m_Name: Wall_Stone_WoodenDoor
   m_TagString: Untagged
@@ -91,8 +93,34 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32452273, y: 1.44441, z: 1.9551518}
-  m_Center: {x: 0.015711531, y: 0.722205, z: 0.006413907}
+  m_Size: {x: 0.32452273, y: 1.44441, z: 0.70795655}
+  m_Center: {x: 0.015711531, y: 0.722205, z: -0.6171837}
+--- !u!65 &7901272183033354421
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407777385046858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32452273, y: 1.44441, z: 0.72603893}
+  m_Center: {x: 0.015711531, y: 0.722205, z: 0.62097037}
+--- !u!65 &6812793049961909161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407777385046858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32452273, y: 0.5298083, z: 1.9551518}
+  m_Center: {x: 0.015711531, y: 1.1795057, z: 0.0064139366}
 --- !u!1 &1980299660634666
 GameObject:
   m_ObjectHideFlags: 0
