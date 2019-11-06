@@ -14,8 +14,6 @@ public class StandartHealthComponent : MonoBehaviour, IHealthComponent
     public float HP => standartHealth.HP;
     public Action OnHpChanged { get => standartHealth.OnHpChanged; set => standartHealth.OnHpChanged = value; }
 
-
-
     public void Increase(float amount)
     {
         standartHealth.Increase(amount);
@@ -28,5 +26,5 @@ public class StandartHealthComponent : MonoBehaviour, IHealthComponent
 
     private void Awake() => standartHealth = new StandartHealthClass(maxHp, maxHp);
 
-    public void Initialiser(float maxHp, float hp) => standartHealth = new StandartHealthClass(maxHp, hp);
+    public void Initialize(float maxHp, float hp) => standartHealth = new StandartHealthClass(maxHp, hp);
 }

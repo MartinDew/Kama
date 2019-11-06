@@ -34,7 +34,7 @@ namespace KamaLib
 
         public void TakeDamage(float damage) => HP -= damage;
 
-        public void Initialiser(float maxHp, float hp)
+        public void Initialize(float maxHp, float hp)
         {
             MaxHP = maxHp;
             HP = hp;

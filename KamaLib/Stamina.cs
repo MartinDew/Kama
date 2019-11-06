@@ -32,7 +32,7 @@ namespace KamaLib
 
         public void SpendSp(float amount) => Sp -= amount;
 
-        public void Initializer(float maxSp, float sp)
+        public void Initialize(float maxSp, float sp)
         {
             MaxSp = maxSp;
             Sp = sp;
