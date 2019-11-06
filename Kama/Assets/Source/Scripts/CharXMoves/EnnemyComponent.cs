@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using KamaLib;
 
@@ -25,7 +24,6 @@ public class EnnemyComponent : MonoBehaviour
         ennemyController = GetComponent<EnnemyController>();
     }
 
-    // Update is called once per frame
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Main Character").GetComponent<PlayerComponent>();
@@ -38,7 +36,6 @@ public class EnnemyComponent : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(($"ennemy has {ennemy.EnnemyHealthComponent.HP}"));
         if (ennemy.EnnemyHealthComponent.HP <= 0 && !ennemyController.death)
         {            
             ennemyController.Die();

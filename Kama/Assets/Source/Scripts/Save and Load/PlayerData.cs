@@ -1,6 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
 using KamaLib;
-using System.Collections.Generic;
 
 [System.Serializable]
 public class PlayerData 
@@ -15,8 +14,8 @@ public class PlayerData
     public int maxLevel;
     public int currentEXP;
     public int maxEXP;
-    //public int currentATK;
-    //public int currentDEF;
+    //public float currentATK;
+
     public PlayerData(PlayerComponent player)
     {
         position = new float[3];
@@ -33,5 +32,6 @@ public class PlayerData
         maxLevel = player.LevelComponent.maxLevel;
         currentEXP = player.LevelComponent.CurrentEXP;
         maxEXP = player.LevelComponent.maxEXP;
+        //currentATK = player.LevelComponent.CurrentATK;
     }
 }
