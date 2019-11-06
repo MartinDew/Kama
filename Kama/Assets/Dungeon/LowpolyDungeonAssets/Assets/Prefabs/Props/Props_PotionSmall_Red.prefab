@@ -105,6 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893af1e47d637734ab360a9c396b0c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
+  radius: 7
   interactionTransform: {fileID: 4364208266775728}
   item: {fileID: 11400000, guid: 24384cb63b64b574f8247b37cce5e2c0, type: 2}
