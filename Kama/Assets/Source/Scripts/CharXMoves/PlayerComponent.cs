@@ -56,6 +56,11 @@ public class PlayerComponent : MonoBehaviour
             GetComponent<Animator>().SetBool("dead", true);
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DirectedCameraController>().enabled = false;
         }
+
+        player.LevelComponent.OnExpChanged += () =>
+        {
+            Debug.Log($"Player is now level {player.LevelComponent.CurrentLevel}");
+        };
     }
 
     private void Attack()

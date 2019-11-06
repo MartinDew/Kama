@@ -7,6 +7,7 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
     public LevelClass levelClass;
     private const int defaultLevel = 1;
     public Action OnExpChanged { get => levelClass.OnExpChanged; set => levelClass.OnExpChanged = value; }
+    public Action OnLevelChanged { get => levelClass.OnLevelChanged; set => levelClass.OnLevelChanged = value; }
     public int CurrentLevel => levelClass.CurrentLevel;
 
     //public int CurrentATK => levelClass.CurrentATK;
@@ -16,11 +17,7 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
     public int maxLevel => levelClass.maxLevel;
     public bool isMaxLevel => levelClass.isMaxLevel;
     public void Initialize(int level, int maxlevel, int exp, int maxexp) => levelClass = new LevelClass(level, maxlevel, exp, maxexp);
-    public void LevelUp()
-    {
-        levelClass.LevelUp();
-        Debug.Log("Level up to level: " + CurrentLevel + 1);
-    }
+    public void LevelUp() =>  levelClass.LevelUp();
     public void UpdateEXP(int exp) => levelClass.UpdateEXP(exp);
     private void Awake() => levelClass = new LevelClass(defaultLevel, maxLevel, CurrentEXP, maxEXP);
 
