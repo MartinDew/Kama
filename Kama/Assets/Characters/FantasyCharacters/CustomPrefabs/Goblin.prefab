@@ -1970,7 +1970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visionRadius: 60
   death: 0
-  coolDown: 1
+  coolDown: 2
   coolDownTime: 0
 --- !u!195 &9117139127557096939
 NavMeshAgent:

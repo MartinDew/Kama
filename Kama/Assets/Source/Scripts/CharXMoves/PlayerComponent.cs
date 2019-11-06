@@ -55,7 +55,7 @@ public class PlayerComponent : MonoBehaviour
             GetComponent<Animator>().SetBool("dead", true);
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DirectedCameraController>().enabled = false;
         }
-        levelText.text = "Niveau\n" + LevelComponent.CurrentLevel;
+        //levelText.text = "Niveau\n" + LevelComponent.CurrentLevel; /// Non! Faire la même chose qu'avec les bar d'HP/SP
         HealthComponent.Initialize(LevelComponent.CurrentHP, HealthComponent.HP);
         SkillComponent.Initialize(LevelComponent.CurrentSP, SkillComponent.Sp);
     }
