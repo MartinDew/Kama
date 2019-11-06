@@ -10,12 +10,14 @@ public class CheckButtonsPressed : MonoBehaviour
     {
         inventory = GameObject.Find("Inventory");
         inventory.SetActive(false);
+        Cursor.visible = false;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown("escape"))
         {
+            Cursor.visible = !Cursor.visible;
             SceneManager.LoadScene("PauseMenuScene");
         }
     }

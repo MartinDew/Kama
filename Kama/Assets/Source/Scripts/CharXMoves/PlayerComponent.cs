@@ -21,6 +21,8 @@ public class PlayerComponent : MonoBehaviour
 
     GameObject inventory;
 
+    bool isDead = false;
+
     private void Awake()
     {
         inventory = GameObject.Find("Inventory");
@@ -42,11 +44,17 @@ public class PlayerComponent : MonoBehaviour
     private void Update()
     {
         if (Input.GetButtonDown("Fire1") && SkillComponent.Sp > SkillConsumption && !inventory.activeSelf)
-            Attack();
+            if (!isDead)
+                Attack();
 
         if (Input.GetKeyDown(KeyCode.Backspace))
-        {
             HealthComponent.TakeDamage(10);
+
+        if (HealthComponent.HP <= 0 && !isDead)
+        {
+            isDead = true;
+            GetComponent<Animator>().SetBool("dead", true);
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DirectedCameraController>().enabled = false;
         }
     }
 
