@@ -4,6 +4,7 @@ using KamaLib;
 public class LevelUpComponent : MonoBehaviour, ILevelComponent
 {
     public LevelClass levelClass;
+    private int defaultLevel = 1;
     public int CurrentLevel => levelClass.CurrentLevel;
     //public int CurrentATK => levelClass.CurrentATK;
     //public int CurrentDEF => levelClass.CurrentDEF;
@@ -13,6 +14,8 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
     public bool isMaxLevel => levelClass.isMaxLevel;
     public void Initialize(int level, int maxlevel) => levelClass = new LevelClass(level, maxlevel);
     public void LevelUp() => levelClass.LevelUp();
+
+    private void Awake() => levelClass = new LevelClass(defaultLevel, maxLevel);
 
     //public void UpdateATK(int atk) => levelClass.UpdateATK(atk);
     //public void UpdateDEF(int def) => levelClass.UpdateDEF(def);
