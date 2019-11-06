@@ -13,6 +13,7 @@ public class CharacterMoveComponent : MonoBehaviour
     private bool grounded;
     private Vector3 jump;
     public float jumpForce = 2.0f;
+    public GameObject inventoryUI;
     Animator anim;
     Rigidbody rb;
     public GameObject target;
@@ -21,34 +22,36 @@ public class CharacterMoveComponent : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        grounded = anim.GetBool("Grounded");
-        direction = Input.GetAxis("Horizontal");
-        speed = Input.GetAxis("Vertical");
+        if (!anim.GetBool("dead") && !inventoryUI.activeSelf)
+        {
+            grounded = anim.GetBool("Grounded");
+            direction = Input.GetAxis("Horizontal");
+            speed = Input.GetAxis("Vertical");
 
-        anim.SetFloat("Direction", direction);
-        anim.SetFloat("Speed", speed);
+            anim.SetFloat("Direction", direction);
+            anim.SetFloat("Speed", speed);
 
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
-            anim.SetTrigger("Jump");
-            //anim.applyRootMotion = true;
-            anim.SetBool("Grounded", false);
-            jump = new Vector3(direction, 20.0f, speed);
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-        }
-        if (Input.GetButton("Run"))
-        {
-            anim.SetBool("Run", !anim.GetBool("Run"));
-        }
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            transform.LookAt(target.transform);
+            if (Input.GetButtonDown("Jump") && grounded)
+            {
+                anim.SetTrigger("Jump");
+                //anim.applyRootMotion = true;
+                anim.SetBool("Grounded", false);
+                jump = new Vector3(direction, 20.0f, speed);
+                rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            }
+            if (Input.GetButton("Run"))
+            {
+                anim.SetBool("Run", !anim.GetBool("Run"));
+            }
+            if (Input.GetKey(KeyCode.Tab))
+            {
+                transform.LookAt(target.transform);
+            }
         }
     }
 

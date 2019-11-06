@@ -25,6 +25,7 @@ public class InventoryUI : MonoBehaviour {
 	{
 		if (Input.GetButtonDown("Inventory"))
 		{
+            Cursor.visible = !Cursor.visible;
             camera.enabled = !camera.enabled;
 			inventoryUI.SetActive(!inventoryUI.activeSelf);
 			UpdateUI();

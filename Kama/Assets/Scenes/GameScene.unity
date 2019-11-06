@@ -70044,6 +70044,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: MainWeaponBone
       objectReference: {fileID: 0}
+    - target: {fileID: 6010375132134530107, guid: 4fdea373b829a1642b192a27668f45ce,
+        type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 2610020}
     m_RemovedComponents:
     - {fileID: 1439313893370365667, guid: 4fdea373b829a1642b192a27668f45ce, type: 3}
     - {fileID: 4418407751704366926, guid: 4fdea373b829a1642b192a27668f45ce, type: 3}
