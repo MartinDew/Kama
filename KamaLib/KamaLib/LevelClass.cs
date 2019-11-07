@@ -5,7 +5,10 @@ namespace KamaLib
     [Serializable]
     public class LevelClass : ILevelComponent
     {
+        public const int defaultLevel = 1;
+        public const int defaultExp = 100;
         public Action OnExpChanged { get; set; }
+        public Action OnLevelChanged { get; set; }
         public int CurrentLevel { get; private set; }
         public int maxLevel { get; private set; }
         public bool isMaxLevel { get; private set; }
@@ -40,6 +43,15 @@ namespace KamaLib
             CurrentSP = sp;
         }
 
+        public void InitializeStats(float hp, float sp, float atk)
+        {
+            CurrentHP = hp;
+            CurrentSP = sp;
+            CurrentATK = atk;
+            CurrentLevel = defaultLevel;
+            CurrentEXP = defaultExp;
+        }
+
         public void LevelUp()
         {
             CurrentLevel++;
@@ -47,7 +59,7 @@ namespace KamaLib
             CurrentHP += 10;
             CurrentSP += 5;
             UpdateATK(2);
-
+            OnLevelChanged();
             if (CurrentLevel == maxLevel)
                 isMaxLevel = true;
         }
