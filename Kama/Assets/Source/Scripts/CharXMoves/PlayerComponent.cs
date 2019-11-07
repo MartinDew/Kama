@@ -18,8 +18,8 @@ public class PlayerComponent : MonoBehaviour
     public float SkillConsumption = 5;
     public ILevelComponent LevelComponent => player.LevelComponent;
     public Text levelText;
-    GameObject inventory;
-    bool isDead = false;
+    private GameObject inventory;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -31,13 +31,19 @@ public class PlayerComponent : MonoBehaviour
             SkillComponent = GetComponent<ISkillComponent>(),
             LevelComponent = GetComponent<ILevelComponent>()
         };
-        //LevelComponent.Initialize(LevelUpComponent.defaultLevel, LevelComponent.maxLevel, 0, LevelComponent.maxEXP, AttackComponent.baseDamage, HealthComponent.HP, SkillComponent.Sp);
+        LevelComponent.Initialize(LevelUpComponent.defaultLevel, LevelComponent.maxLevel, 0, LevelComponent.maxEXP, AttackComponent.baseDamage, HealthComponent.HP, SkillComponent.Sp);
     }
 
     private void Start()
     {
         //player.HealthComponent.OnHpChanged();
         //player.SkillComponent.OnSpChanged += () => Debug.Log($"The character has {player.SkillComponent.Sp}");
+        player.LevelComponent.OnLevelChanged += () =>
+        {
+            levelText.text = "Niveau\n" + LevelComponent.CurrentLevel; 
+            HealthComponent.Initialize(LevelComponent.CurrentHP, HealthComponent.HP);
+            SkillComponent.Initialize(LevelComponent.CurrentSP, SkillComponent.Sp);
+        };
     }
 
     private void Update()
@@ -55,9 +61,6 @@ public class PlayerComponent : MonoBehaviour
             GetComponent<Animator>().SetBool("dead", true);
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DirectedCameraController>().enabled = false;
         }
-        //levelText.text = "Niveau\n" + LevelComponent.CurrentLevel; /// Non! Faire la même chose qu'avec les bar d'HP/SP
-        //HealthComponent.Initialize(LevelComponent.CurrentHP, HealthComponent.HP);
-        //SkillComponent.Initialize(LevelComponent.CurrentSP, SkillComponent.Sp);
     }
 
     private void Attack()
