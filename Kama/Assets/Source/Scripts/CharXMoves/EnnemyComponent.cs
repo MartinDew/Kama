@@ -12,7 +12,7 @@ public class EnnemyComponent : MonoBehaviour
     //public IAnimationHelper AnimationHelper;
     public EnnemyController ennemyController;
     public int Level;
-    public PlayerComponent player;
+    public PlayerComponent target;
     void Awake()
     {
         ennemy = new EnnemyClass()
@@ -22,11 +22,11 @@ public class EnnemyComponent : MonoBehaviour
         };
         //AnimationHelper = GetComponent<IAnimationHelper>();
         ennemyController = GetComponent<EnnemyController>();
+        target = GameObject.FindGameObjectWithTag("Main Character").GetComponent<PlayerComponent>();
     }
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Main Character").GetComponent<PlayerComponent>();
 
         ennemy.EnnemyHealthComponent.OnHpChanged += () =>
         {
@@ -41,8 +41,8 @@ public class EnnemyComponent : MonoBehaviour
             ennemyController.Die();
             StartCoroutine(DestroyTheEnemy()); // Roule le timer pour utiliser le yield return
             DestroyTheEnemy();
-            player.LevelComponent.UpdateEXP(Level * LevelClass.enemyEXP);
-            Debug.Log($"Player has {player.LevelComponent.CurrentEXP} EXP!");
+            target.LevelComponent.UpdateEXP(Level * LevelClass.enemyEXP);
+            Debug.Log($"Player has {target.LevelComponent.CurrentEXP} EXP!");
         }
     }
 
