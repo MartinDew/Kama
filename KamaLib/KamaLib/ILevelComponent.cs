@@ -15,7 +15,7 @@ namespace KamaLib
         float CurrentHP { get; }
         float CurrentSP { get; }
         void Initialize(int level, int maxlevel, int exp, int maxexp, float atk, float hp, float sp);
-        void InitializeStats(float hp, float sp);
+        void InitializeStats(float hp, float sp, float atk);
         void LevelUp();
         void UpdateEXP(int exp);
         void UpdateATK(float atk);

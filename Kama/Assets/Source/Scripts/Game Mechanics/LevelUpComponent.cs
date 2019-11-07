@@ -17,7 +17,7 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
     public float CurrentHP => levelClass.CurrentHP;
     public float CurrentSP => levelClass.CurrentSP;
     public void Initialize(int level, int maxlevel, int exp, int maxexp, float atk, float hp, float sp) => levelClass = new LevelClass(level, maxlevel, exp, maxexp, atk, hp, sp);
-    public void InitializeStats(float hp, float sp) => levelClass.InitializeStats(hp, sp);
+    public void InitializeStats(float hp, float sp, float atk) => levelClass.InitializeStats(hp, sp, atk);
     public void LevelUp() =>  levelClass.LevelUp();
     public void UpdateEXP(int exp) => levelClass.UpdateEXP(exp);
     private void Awake() => levelClass = new LevelClass(defaultLevel, maxLevel, CurrentEXP, maxEXP, CurrentATK, CurrentHP, CurrentSP);

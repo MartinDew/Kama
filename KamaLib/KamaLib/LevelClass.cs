@@ -43,10 +43,11 @@ namespace KamaLib
             CurrentSP = sp;
         }
 
-        public void InitializeStats(float hp, float sp)
+        public void InitializeStats(float hp, float sp, float atk)
         {
             CurrentHP = hp;
             CurrentSP = sp;
+            CurrentATK = atk;
             CurrentLevel = defaultLevel;
             CurrentEXP = defaultExp;
         }

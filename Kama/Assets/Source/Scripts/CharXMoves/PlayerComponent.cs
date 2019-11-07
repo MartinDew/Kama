@@ -31,7 +31,7 @@ public class PlayerComponent : MonoBehaviour
             SkillComponent = GetComponent<ISkillComponent>(),
             LevelComponent = GetComponent<ILevelComponent>()
         };
-        LevelComponent.Initialize(LevelUpComponent.defaultLevel, LevelComponent.maxLevel, 0, LevelComponent.maxEXP, AttackComponent.baseDamage, HealthComponent.HP, SkillComponent.Sp);
+        LevelComponent.InitializeStats(HealthComponent.HP, SkillComponent.Sp, AttackComponent.baseDamage);
     }
 
     private void Start()
@@ -93,6 +93,6 @@ public class PlayerComponent : MonoBehaviour
 
         HealthComponent.Initialize(data.MaxHP, data.HP);
         SkillComponent.Initialize(data.MaxSP, data.SP);
-        //LevelComponent.Initialize(data.currentLevel, data.maxLevel, data.currentEXP, data.maxEXP, data.currentATK);
+        //LevelComponent.Initialize(data.currentLevel, data.maxLevel, data.currentEXP, data.maxEXP, data.currentATK, data.HP, data.SP); // a vérifier
     } 
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using KamaLib;
 
@@ -27,7 +28,6 @@ public class EnnemyComponent : MonoBehaviour
 
     void Start()
     {
-
         ennemy.EnnemyHealthComponent.OnHpChanged += () =>
         {
             Debug.Log($"ennemy has {ennemy.EnnemyHealthComponent.HP} life remaining");
