@@ -20,4 +20,9 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
     public void UpdateEXP(int exp) => levelClass.UpdateEXP(exp);
     private void Awake() => levelClass = new LevelClass(defaultLevel, maxLevel, CurrentEXP, maxEXP, CurrentATK, CurrentHP, CurrentSP);
     public void UpdateATK(float atk) => levelClass.UpdateATK(atk);
+
+    public void Initialize(int level, int maxlevel)
+    {
+        throw new NotImplementedException();
+    }
 }

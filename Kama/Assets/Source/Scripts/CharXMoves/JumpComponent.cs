@@ -10,10 +10,10 @@ public class JumpComponent : StateMachineBehaviour
     //    
     //}
 
-    public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
-    {
-        animator.applyRootMotion = false;
-    }
+    //public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    //{
+    //    animator.applyRootMotion = false;
+    //}
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

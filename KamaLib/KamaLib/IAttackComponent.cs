@@ -15,5 +15,7 @@ namespace KamaLib
 
         float getTotalRange();
         float getTotalSpeed();
+
+        //void changeWeapon(IWeaponComponent weapon);
     }
 }

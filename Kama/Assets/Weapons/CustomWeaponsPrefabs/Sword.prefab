@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7185006698178768294}
   - component: {fileID: 7185006698178768289}
   - component: {fileID: 2560742792397310071}
+  - component: {fileID: 8663924465780276733}
+  - component: {fileID: 1061127688041233796}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Weapon
@@ -26,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7185006698178768291}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 419.99966, y: 419.9995, z: 420}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &7185006698178768294
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -93,7 +95,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Practice Sword
   AdditionalDamage: 1
-  AttackSpeedAmp: 0
-  AttackRangeAmp: 0
-  Cost: 1
+  AttackSpeedAmp: -1
+  AttackRangeAmp: 2
+  Cost: 2
   Price: 5
+--- !u!114 &8663924465780276733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185006698178768291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893af1e47d637734ab360a9c396b0c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  interactionTransform: {fileID: 7185006698178768288}
+  item: {fileID: 11400000, guid: 8f8861bd03be27e41b897b58f3c7234d, type: 2}
+--- !u!114 &1061127688041233796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185006698178768291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5d347e80c1c594d96e100e4958c895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

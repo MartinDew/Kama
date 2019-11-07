@@ -35,6 +35,7 @@ namespace KamaLib
         public float getTotalRange() => weaponComponent.attackRangeAmplificator + attackRange;
 
         public float getTotalSpeed() => attackSpeed + weaponComponent.attackSpeedAmplificator;
-        
+
+        public void changeWeapon(IWeaponComponent weapon) => weaponComponent = weapon;
     }
 }

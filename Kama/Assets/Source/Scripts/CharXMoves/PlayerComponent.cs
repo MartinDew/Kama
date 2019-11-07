@@ -31,7 +31,7 @@ public class PlayerComponent : MonoBehaviour
             SkillComponent = GetComponent<ISkillComponent>(),
             LevelComponent = GetComponent<ILevelComponent>()
         };
-        LevelComponent.Initialize(LevelUpComponent.defaultLevel, LevelComponent.maxLevel, 0, LevelComponent.maxEXP, AttackComponent.baseDamage, HealthComponent.HP, SkillComponent.Sp);
+        //LevelComponent.Initialize(LevelUpComponent.defaultLevel, LevelComponent.maxLevel, 0, LevelComponent.maxEXP, AttackComponent.baseDamage, HealthComponent.HP, SkillComponent.Sp);
     }
 
     private void Start()
@@ -56,8 +56,8 @@ public class PlayerComponent : MonoBehaviour
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DirectedCameraController>().enabled = false;
         }
         //levelText.text = "Niveau\n" + LevelComponent.CurrentLevel; /// Non! Faire la même chose qu'avec les bar d'HP/SP
-        HealthComponent.Initialize(LevelComponent.CurrentHP, HealthComponent.HP);
-        SkillComponent.Initialize(LevelComponent.CurrentSP, SkillComponent.Sp);
+        //HealthComponent.Initialize(LevelComponent.CurrentHP, HealthComponent.HP);
+        //SkillComponent.Initialize(LevelComponent.CurrentSP, SkillComponent.Sp);
     }
 
     private void Attack()
@@ -91,5 +91,5 @@ public class PlayerComponent : MonoBehaviour
         HealthComponent.Initialize(data.MaxHP, data.HP);
         SkillComponent.Initialize(data.MaxSP, data.SP);
         //LevelComponent.Initialize(data.currentLevel, data.maxLevel, data.currentEXP, data.maxEXP, data.currentATK);
-    }
+    } 
 }

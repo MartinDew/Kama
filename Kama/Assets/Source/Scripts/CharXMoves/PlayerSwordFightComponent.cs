@@ -38,5 +38,10 @@ public class PlayerSwordFightComponent : MonoBehaviour, IAttackComponent
         swordFight = new SwordFightingComponent(BaseDamage, AttackRange, AttackSpeed, SwordComponent);
     }
 
+    public void equipWeapon(IWeaponComponent weapon)
+    {
+        swordFight.changeWeapon(weapon);
+        Debug.Log($"New weapon equipped {weaponComponent.name}");
+    }
 
 }

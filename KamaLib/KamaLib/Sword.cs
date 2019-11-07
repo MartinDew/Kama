@@ -31,5 +31,7 @@ namespace KamaLib
             cost = Cost;
             price = Price;
         }
+
+
     }
 }

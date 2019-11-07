@@ -307,7 +307,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6010375131858265208}
   - component: {fileID: 6010375131858265206}
-  - component: {fileID: 6010375131858265207}
   m_Layer: 0
   m_Name: Armor
   m_TagString: Untagged
@@ -418,20 +417,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000000069849193, y: 0.013373852, z: -0.0011218032}
     m_Extent: {x: 0.0102513805, y: 0.014562337, z: 0.0065169143}
   m_DirtyAABB: 0
---- !u!64 &6010375131858265207
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6010375131858265209}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 4300000, guid: 57ee0cd6834207246b12436afcc538a0, type: 3}
 --- !u!1 &6010375131865750985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1042,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: fff6277e6d4c61e4dafb03c163b1c64e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
     are already bound by a Humanoid avatar. These transforms can only be changed by
@@ -1098,6 +1083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 150
+  inventoryUI: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &6010375132134530108
 MonoBehaviour:
@@ -1140,6 +1126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillConsumption: 0
+  levelText: {fileID: 0}
 --- !u!114 &1134274580514198096
 MonoBehaviour:
   m_ObjectHideFlags: 0
