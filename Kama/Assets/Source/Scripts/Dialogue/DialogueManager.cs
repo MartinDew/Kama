@@ -7,30 +7,45 @@ public class DialogueManager : MonoBehaviour
 {
     public Text nameText;
     public Text dialogueText;
+    public float radius = 10f;
+    public Button startDialogue;
+    public Image dialogueBox;
+    private float distance;
+    private Queue<string> sentences;
+    Transform target;
 
     //public Animator animator;
 
-    private Queue<string> sentences;
-    void Start()
+    private void Start()
     {
         sentences = new Queue<string>();
+        startDialogue.gameObject.SetActive(false);
+        dialogueBox.gameObject.SetActive(false);
     }
+    private void Awake()
+    {
+        target = GameObject.FindGameObjectWithTag("Main Character").transform;
+    }
+    private void Update()
+    {
+        distance = Vector3.Distance(target.position, transform.position);
 
+        if (distance <= radius)
+            startDialogue.gameObject.SetActive(true);
+    }
+    
     public void StartDialogue(Dialogue dialogue)
     {
         //animator.SetBool("IsOpen", true);
 
-        Debug.Log("Starting conversation with " + dialogue.npcName);
-
         nameText.text = dialogue.npcName;
-
         sentences.Clear();
 
         foreach (string sentence in dialogue.sentences)
-        {
             sentences.Enqueue(sentence);
-        }
 
+        dialogueBox.gameObject.SetActive(true);
+        startDialogue.gameObject.SetActive(false);
         DisplayNextSentence();
     }
 
@@ -38,6 +53,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
+            // make the "continue" button become "end"
             EndDialogue();
             return;
         }
@@ -62,6 +78,8 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         //animator.SetBool("IsOpen", false);
-        Debug.Log("End of conversation");
+        dialogueBox.gameObject.SetActive(false);
+        if (distance <= radius)
+            startDialogue.gameObject.SetActive(true);
     }
 }
