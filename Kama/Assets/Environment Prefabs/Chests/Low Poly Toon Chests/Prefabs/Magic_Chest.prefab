@@ -93,6 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 485232}
   - component: {fileID: 9594284}
+  - component: {fileID: 8164622774378073866}
+  - component: {fileID: 5358870301029022832}
   m_Layer: 0
   m_Name: Magic_Chest
   m_TagString: Untagged
@@ -107,8 +109,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159160}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -2.4500635, y: -6.7851706, z: -4.925662}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 420712}
@@ -116,7 +118,7 @@ Transform:
   - {fileID: 401496}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &9594284
 Animator:
   serializedVersion: 3
@@ -127,7 +129,7 @@ Animator:
   m_GameObject: {fileID: 159160}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 70176df927b870d42a67d3f4742ac305, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1294cf4d7d723aa48988378c2be7f5bb, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -136,6 +138,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8164622774378073866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2518bf7b5fb34ea8b6a150b3158236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  interactionTransform: {fileID: 485232}
+  items: []
+--- !u!65 &5358870301029022832
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.235434, y: 1.0857868, z: 0.65811276}
+  m_Center: {x: -0.00025880337, y: 0.029626131, z: -0.009725615}
 --- !u!1 &160942
 GameObject:
   m_ObjectHideFlags: 0

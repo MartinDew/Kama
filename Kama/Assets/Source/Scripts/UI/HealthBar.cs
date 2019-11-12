@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using KamaLib;
 
@@ -31,7 +29,6 @@ public class HealthBar : MonoBehaviour
 
     private float AdjustCharacterHealth()
     {
-
         return playerHealth.HP / playerHealth.MaxHP;
     }
 

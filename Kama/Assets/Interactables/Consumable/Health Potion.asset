@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Health Potion
   m_EditorClassIdentifier: 
   name: Health Potion
-  icon: {fileID: 21300000, guid: 84e3682c55f9db94b8813ed79cd02ad7, type: 3}
+  icon: {fileID: 21300000, guid: a6cf385d8fa59c544a8b62c9090e22a5, type: 3}
   showInInventory: 1
   gameObject: {fileID: 0}
   healthGain: 10

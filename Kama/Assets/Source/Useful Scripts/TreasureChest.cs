@@ -2,34 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreasureChest : Interactable {
-
+public class TreasureChest : Interactable 
+{
 	Animator animator;
-
-	bool isOpen;
 	public Item[] items;
+    bool isOpen = false;
 
-	void Start() {
-		animator = GetComponent<Animator> ();
+	private void Awake() 
+    {
+		animator = GetComponent<Animator>();
 	}
 
-	public override void Interact ()
+	public override void Interact()
 	{
-		base.Interact ();
-		if (!isOpen) {
-			animator.SetTrigger ("Open");
-			StartCoroutine (CollectTreasure ());
-		}
-	}
+        if (!isOpen)
+        {
+            base.Interact();
+            animator.SetTrigger("Open");
+            CollectTreasure();
+        }
+    }
 
-	IEnumerator CollectTreasure() {
-
-		isOpen = true;
-
-		yield return new WaitForSeconds (1f);
-		print ("Chest opened");
-		foreach (Item i in items) {
-			Inventory.instance.Add (i);
-		}
+	private void CollectTreasure() 
+    {
+        isOpen = true;
+        Debug.Log("Chest opened");
+		foreach (Item i in items)
+			Inventory.instance.Add(i);
 	}
 }
