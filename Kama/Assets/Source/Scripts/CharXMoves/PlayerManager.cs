@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
     #region singleton
     public static PlayerManager instance;
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Main Character");
         instance = this;
