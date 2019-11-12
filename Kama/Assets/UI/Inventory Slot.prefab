@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.91, y: 0.22}
-  m_SizeDelta: {x: 80.8, y: 79.48}
+  m_AnchoredPosition: {x: 0.54, y: -0.58}
+  m_SizeDelta: {x: 78.37, y: 80.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8443035217839105205
 CanvasRenderer:
@@ -155,14 +155,14 @@ RectTransform:
   m_GameObject: {fileID: 8443035218933207986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65586, y: 0.65586, z: 0.65586}
   m_Children: []
   m_Father: {fileID: 8443035218116020592}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 38}
+  m_AnchoredPosition: {x: 44.4, y: 45.9}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8443035218933207950
@@ -193,7 +193,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4cddebffc56606b4f82eb5855d8c8921, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70c29fbed27eadc43aef0ecf189d243d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

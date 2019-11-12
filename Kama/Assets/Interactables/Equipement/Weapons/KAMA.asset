@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KAMA
   m_EditorClassIdentifier: 
   name: KAMA
-  icon: {fileID: 21300000, guid: 654c0db546afa2249a47e7c037ce06c9, type: 3}
+  icon: {fileID: 21300000, guid: b32fe56ca56b6f94495f87d48ac67418, type: 3}
   showInInventory: 1
   gameObject: {fileID: 0}
   equipSlot: 3
