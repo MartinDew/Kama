@@ -7,12 +7,13 @@ public class EXPBar : MonoBehaviour
 {
     public GameObject target;
     private Image bar;
-    ILevelComponent playerEXP;
-    private int EXP;
-    [SerializeField] private Text expValue;
+    private ILevelComponent playerEXP;
+    private int XPValueInt;
+    [SerializeField] private Text XPValue;
     private void Awake()
     {
-        target = GameObject.FindGameObjectWithTag("Main Character");
+        if (target == null )
+            target = GameObject.FindGameObjectWithTag("Main Character");
         playerEXP = target.GetComponent<ILevelComponent>();
         bar = GetComponent<Image>();
     }
@@ -29,16 +30,13 @@ public class EXPBar : MonoBehaviour
 
     private float AdjustEXP()
     {
-        /*if (playerEXP.CurrentEXP != 0)
-            return playerEXP.CurrentEXP / playerEXP.maxEXP;
-        else*/
-            return 0;
+        return playerEXP.CurrentEXP / playerEXP.maxEXP;
     }
 
     private void LateUpdate()
     {
         SetFill(AdjustEXP());
-        EXP = playerEXP.CurrentEXP;
-        expValue.text = $"{EXP}";
+        XPValueInt = (int)playerEXP.CurrentEXP;
+        XPValue.text = $"{XPValueInt} / {playerEXP.maxEXP}";
     }
 }

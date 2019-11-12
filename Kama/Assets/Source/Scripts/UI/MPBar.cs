@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using KamaLib;
 
@@ -38,6 +36,6 @@ public class MPBar : MonoBehaviour
     {
         SetFill(AdjustCharacterSP());
         MPValueInt = (int)(playerSkill.Sp);
-        MPValue.text = $"{MPValueInt}";
+        MPValue.text = $"{MPValueInt} / {playerSkill.MaxSp}";
     }
 }

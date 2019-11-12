@@ -12,16 +12,10 @@ public class DialogueManager : MonoBehaviour
     //public Animator animator;
     private float distance;
     private Queue<string> sentences;
-    Transform target;
-
     private void Start()
     {
         sentences = new Queue<string>();
         dialogueBox.gameObject.SetActive(false);
-    }
-    private void Awake()
-    {
-        target = GameObject.FindGameObjectWithTag("Main Character").transform;
     }
     private void Update()
     {

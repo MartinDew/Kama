@@ -5,23 +5,24 @@ namespace KamaLib
     [Serializable]
     public class LevelClass : ILevelComponent
     {
-        public const int defaultLevel = 1;
-        public const int defaultExp = 100;
+        public const float defaultLevel = 1;
+        public const float defaultExp = 0;
+        public const float defaultMaxExp = 100;
         public Action OnExpChanged { get; set; }
         public Action OnLevelChanged { get; set; }
-        public int CurrentLevel { get; private set; }
-        public int maxLevel { get; private set; }
+        public float CurrentLevel { get; private set; }
+        public float maxLevel { get; private set; }
         public bool isMaxLevel { get; private set; }
         public float CurrentATK { get; private set; }
-        public int CurrentEXP { get; private set; }
-        public int maxEXP { get; private set; }
+        public float CurrentEXP { get; private set; }
+        public float maxEXP { get; private set; }
         public float CurrentHP { get; private set; }
         public float CurrentSP { get; private set; }
 
-        public const int nextEXP = 100;
-        public const int enemyEXP = 20;
+        public const float nextEXP = 100;
+        public const float enemyEXP = 20;
         
-        public LevelClass(int level, int maxlevel, int exp, int maxexp, float atk, float hp, float sp)
+        public LevelClass(float level, float maxlevel, float exp, float maxexp, float atk, float hp, float sp)
         {
             CurrentLevel = level;
             maxLevel = maxlevel;
@@ -32,7 +33,7 @@ namespace KamaLib
             CurrentSP = sp;
         }
 
-        public void Initialize(int level, int maxlevel, int exp, int maxexp, float atk, float hp, float sp)
+        public void Initialize(float level, float maxlevel, float exp, float maxexp, float atk, float hp, float sp)
         {
             CurrentLevel = level;
             maxLevel = maxlevel;
@@ -50,6 +51,7 @@ namespace KamaLib
             CurrentATK = atk;
             CurrentLevel = defaultLevel;
             CurrentEXP = defaultExp;
+            maxEXP = defaultMaxExp;
         }
 
         public void LevelUp()
@@ -64,7 +66,7 @@ namespace KamaLib
                 isMaxLevel = true;
         }
 
-        public void UpdateEXP(int exp)
+        public void UpdateEXP(float exp)
         {
             if (!isMaxLevel)
             {
