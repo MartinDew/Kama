@@ -93,6 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 448142}
   - component: {fileID: 9594588}
+  - component: {fileID: 42848568399063928}
+  - component: {fileID: 8297223471119236194}
   m_Layer: 0
   m_Name: Death_Chest
   m_TagString: Untagged
@@ -108,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117430}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -4.146515, y: -5.9842515, z: -6.739525}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 410358}
@@ -127,7 +129,7 @@ Animator:
   m_GameObject: {fileID: 117430}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bff4796ce480d774683750701d272096, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1294cf4d7d723aa48988378c2be7f5bb, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -136,6 +138,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &42848568399063928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2518bf7b5fb34ea8b6a150b3158236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  interactionTransform: {fileID: 448142}
+  items: []
+--- !u!65 &8297223471119236194
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2718695, y: 1.1194398, z: 0.7055391}
+  m_Center: {x: -0.00074607134, y: -0.05971992, z: -0.061134443}
 --- !u!1 &139130
 GameObject:
   m_ObjectHideFlags: 0
