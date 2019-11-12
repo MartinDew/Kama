@@ -5,21 +5,18 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public float radius = 20f;
     public Text nameText;
     public Text dialogueText;
-    public float radius = 10f;
-    public Button startDialogue;
     public Image dialogueBox;
+    //public Animator animator;
     private float distance;
     private Queue<string> sentences;
     Transform target;
 
-    //public Animator animator;
-
     private void Start()
     {
         sentences = new Queue<string>();
-        startDialogue.gameObject.SetActive(false);
         dialogueBox.gameObject.SetActive(false);
     }
     private void Awake()
@@ -28,16 +25,13 @@ public class DialogueManager : MonoBehaviour
     }
     private void Update()
     {
-        distance = Vector3.Distance(target.position, transform.position);
-
-        if (distance <= radius)
-            startDialogue.gameObject.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.C))
+                DisplayNextSentence();
     }
-    
+
     public void StartDialogue(Dialogue dialogue)
     {
         //animator.SetBool("IsOpen", true);
-
         nameText.text = dialogue.npcName;
         sentences.Clear();
 
@@ -45,7 +39,6 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
 
         dialogueBox.gameObject.SetActive(true);
-        startDialogue.gameObject.SetActive(false);
         DisplayNextSentence();
     }
 
@@ -53,13 +46,15 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
-            // make the "continue" button become "end"
             EndDialogue();
             return;
         }
+        else if (sentences.Count == 1)
+            GameObject.Find("Continue Dialogue").GetComponent<Text>().text = "Fermer (C)";
+        else
+            GameObject.Find("Continue Dialogue").GetComponent<Text>().text = "Continuer (C)";
 
         string sentence = sentences.Dequeue();
-        //Debug.Log(sentence);
         dialogueText.text = sentence;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
@@ -79,7 +74,5 @@ public class DialogueManager : MonoBehaviour
     {
         //animator.SetBool("IsOpen", false);
         dialogueBox.gameObject.SetActive(false);
-        if (distance <= radius)
-            startDialogue.gameObject.SetActive(true);
     }
 }

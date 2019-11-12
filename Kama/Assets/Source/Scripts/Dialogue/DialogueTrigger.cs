@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : Interactable
 {
     public Dialogue dialogue;
 
-    public void TriggerDialogue()
+    public override void Interact()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }

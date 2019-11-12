@@ -43,6 +43,7 @@ public class PlayerComponent : MonoBehaviour
             levelText.text = "Niveau\n" + LevelComponent.CurrentLevel; 
             HealthComponent.Initialize(LevelComponent.CurrentHP, HealthComponent.HP);
             SkillComponent.Initialize(LevelComponent.CurrentSP, SkillComponent.Sp);
+            LevelComponent.Initialize(LevelClass.defaultLevel, LevelComponent.maxLevel, 0, 100, AttackComponent.baseDamage, HealthComponent.HP, SkillComponent.Sp);
         };
     }
 
