@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 /*	
 	This component is for all objects that the player can
@@ -14,22 +15,31 @@ public class Interactable : MonoBehaviour
     public Transform interactionTransform;
     private Transform player;       // Reference to the player transform
     float distance;
+    private Text InteractText;
+    private Image InteractBackground;
     private void Start()
     {        
         player = GameObject.FindGameObjectWithTag("Main Character").transform;
+        InteractText = GameObject.Find("Interact Text").GetComponent<Text>();
+        InteractBackground = GameObject.Find("Interact Text Background").GetComponent<Image>();
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Use"))
+        distance = Vector3.Distance(player.position, interactionTransform.position);
+        // If we haven't already interacted and the player is close enough
+        if (distance <= radius)
         {
-            distance = Vector3.Distance(player.position, interactionTransform.position);
-            // If we haven't already interacted and the player is close enough
-            if (distance <= radius)
-            {
-                // Interact with the object
+            InteractText.enabled = true;
+            InteractBackground.enabled = true;
+
+            if (Input.GetButtonDown("Use"))
                 Interact();
-            }
+        }
+        else
+        {
+            InteractText.enabled = false;
+            InteractBackground.enabled = false;
         }
     }
 

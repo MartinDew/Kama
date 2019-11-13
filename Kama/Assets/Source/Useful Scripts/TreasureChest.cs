@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TreasureChest : Interactable 
 {
@@ -27,7 +28,15 @@ public class TreasureChest : Interactable
     {
         isOpen = true;
         Debug.Log("Chest opened");
-		foreach (Item i in items)
+        /*GameObject.Find("Item Obtained Message").GetComponent<Text>().enabled = true;
+        GameObject.Find("Item Obtained Box").GetComponent<Image>().enabled = true;
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+
+        }
+
+        GameObject.Find("Item Obtained Message").GetComponent<Text>().text = "Vous avez obtenu " + items[0].name;*/
+        foreach (Item i in items)
 			Inventory.instance.Add(i);
 	}
 }
