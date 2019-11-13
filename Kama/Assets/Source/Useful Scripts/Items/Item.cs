@@ -11,8 +11,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class Item : ScriptableObject {
 
-	new public string name = "New Item";    // Name of the item
-    public Sprite icon = null;				// Item icon
+	new public string name = "New Item";	// Name of the item
+	public Sprite icon = null;				// Item icon
 	public bool showInInventory = true;
     public GameObject gameObject;
     public int id;
@@ -20,7 +20,8 @@ public class Item : ScriptableObject {
 	// Called when the item is pressed in the inventory
 	public virtual void Use ()
 	{
-		
+		// Use the item
+		// Something may happen
 	}
 
 	// Call this method to remove the item from inventory

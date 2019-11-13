@@ -69,7 +69,7 @@ public class PlayerComponent : MonoBehaviour
     {
         //Animator anim;
         GetComponent<Animator>().SetTrigger("Attack");
-        GetComponent<Animator>().SetInteger("Attacks", Random.Range(0, 2));
+        GetComponent<Animator>().SetInteger("Attacks", Random.Range(0, 3));
         SkillComponent.SpendSp(SkillConsumption);
         RaycastHit hit = new RaycastHit();
         Vector3 forward = transform.TransformDirection(Vector3.forward);
