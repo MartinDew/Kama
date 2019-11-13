@@ -2,6 +2,11 @@ using UnityEngine;
 
 /* The base item class. All items should derive from this. */
 
+// ids
+// 1: KAMA
+// 2: Sword
+// 3: Health Potion
+
 [System.Serializable]
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class Item : ScriptableObject {
@@ -10,6 +15,7 @@ public class Item : ScriptableObject {
 	public Sprite icon = null;				// Item icon
 	public bool showInInventory = true;
     public GameObject gameObject;
+    public int id;
 
 	// Called when the item is pressed in the inventory
 	public virtual void Use ()
