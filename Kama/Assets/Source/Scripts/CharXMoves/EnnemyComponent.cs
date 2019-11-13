@@ -13,12 +13,15 @@ public class EnnemyComponent : MonoBehaviour
     bool questHasBeenGiven = false;
     public IHealthComponent HealthComponent => ennemy.EnnemyHealthComponent;
     public IAttackComponent AttackComponent => ennemy.EnnemyAttackComponent;
+    public bool isBoss = false;
     private GameObject questText;
     private GameObject lea;
     //public IAnimationHelper AnimationHelper;
     public EnnemyController ennemyController;
     public int Level;
     public PlayerComponent target;
+    public AudioClip winMusic;
+    AudioSource audioSource;
     void Awake()
     {
         ennemy = new EnnemyClass()
@@ -35,6 +38,7 @@ public class EnnemyComponent : MonoBehaviour
     void Start()
     {
         questText = GameObject.Find("QuestText");
+        audioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
 
         ennemy.EnnemyHealthComponent.OnHpChanged += () =>
         {
@@ -64,6 +68,13 @@ public class EnnemyComponent : MonoBehaviour
                 lea.GetComponent<DialogueTrigger>().dialogue.sentences[2] = "Tu dois entrer dans le sombre donjon et vaincre Kragz,\n le chef des goblins.";
                 lea.GetComponent<DialogueTrigger>().dialogue.sentences[3] = "Voici la clé, tu en auras besoin pour ouvrir la porte.\n Bonne chance!";
                 questHasBeenGiven = true;
+            }
+
+            if (isBoss)
+            {
+                audioSource.clip = winMusic;
+                audioSource.volume = .5f;
+                audioSource.Play();
             }
         }
     }

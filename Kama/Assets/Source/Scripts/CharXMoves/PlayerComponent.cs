@@ -17,7 +17,9 @@ public class PlayerComponent : MonoBehaviour
     public ISkillComponent SkillComponent => player.SkillComponent;
     public float SkillConsumption = 5;
     public ILevelComponent LevelComponent => player.LevelComponent;
+    public AudioClip gameOverClip;
     public Text levelText;
+    public AudioSource swordSound;
     private GameObject inventory;
     private bool isDead = false;
 
@@ -45,6 +47,7 @@ public class PlayerComponent : MonoBehaviour
             levelText.text = "Niveau\n" + LevelComponent.CurrentLevel; 
             HealthComponent.Initialize(LevelComponent.CurrentHP, HealthComponent.HP);
             SkillComponent.Initialize(LevelComponent.CurrentSP, SkillComponent.Sp);
+            GetComponent<AudioSource>().Play();
         };
     }
 
@@ -62,6 +65,9 @@ public class PlayerComponent : MonoBehaviour
             isDead = true;
             GetComponent<Animator>().SetBool("dead", true);
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DirectedCameraController>().enabled = false;
+            GetComponent<AudioSource>().clip = gameOverClip;
+            GameObject.Find("GameManager").GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().Play();
         }
     }
 
@@ -76,10 +82,10 @@ public class PlayerComponent : MonoBehaviour
         Vector3 origin = transform.position;
 
         if (Physics.Raycast(origin, forward, out hit, AttackComponent.getTotalRange()))
-        {
             if (hit.transform.gameObject.tag == "Ennemy")
                 hit.transform.gameObject.SendMessage("TakeDamage", AttackComponent.Attack());
-        }
+
+        swordSound.Play();
     }
 
     public void SavePlayer() => SaveSystem.SavePlayer(this);
