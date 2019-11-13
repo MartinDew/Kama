@@ -44,6 +44,7 @@ public class InventorySlot : MonoBehaviour {
         item.gameObject.SetActive(true);
         item.gameObject.transform.position = player.transform.position;
         item.gameObject.transform.position = new Vector3(player.transform.position.x + 2, player.transform.position.y + 2, player.transform.position.z + 2);
+        item.gameObject.GetComponent<ItemPickup>().enabled = true;    
         Inventory.instance.Remove(item);
 	}
 
