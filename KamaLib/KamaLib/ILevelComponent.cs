@@ -6,18 +6,18 @@ namespace KamaLib
     {
         Action OnExpChanged { get; set; }
         Action OnLevelChanged { get; set; }
-        int CurrentLevel { get; }
-        int maxLevel { get; }
+        float CurrentLevel { get; }
+        float maxLevel { get; }
         bool isMaxLevel { get; }
         float CurrentATK { get; }
-        int CurrentEXP { get; }
-        int maxEXP { get; }
+        float CurrentEXP { get; }
+        float maxEXP { get; }
         float CurrentHP { get; }
         float CurrentSP { get; }
-        void Initialize(int level, int maxlevel, int exp, int maxexp, float atk, float hp, float sp);
+        void Initialize(float level, float maxlevel, float exp, float maxexp, float atk, float hp, float sp);
         void InitializeStats(float hp, float sp, float atk);
         void LevelUp();
-        void UpdateEXP(int exp);
+        void UpdateEXP(float exp);
         void UpdateATK(float atk);
     }
 }

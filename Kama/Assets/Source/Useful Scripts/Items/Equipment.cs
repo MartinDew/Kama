@@ -11,6 +11,7 @@ public class Equipment : Item {
 	public SkinnedMeshRenderer prefab;
     private GameObject weaponBone;
 
+
     private void Awake()
     {
         weaponBone = GameObject.FindGameObjectWithTag("MainWeaponBone");
@@ -19,15 +20,8 @@ public class Equipment : Item {
     // Called when pressed in the inventory
     public override void Use ()
 	{
-		EquipmentManager.instance.Equip(this);	// Equip
-		RemoveFromInventory();	// Remove from inventory
-        
-        //if (equipSlot.Equals(EquipmentSlot.Weapon))
-        //{
-        //    this.gameObject.transform.parent = weaponBone.transform;
-        //}
+        RemoveFromInventory();	// Remove from inventory
 	}
-
 }
 
-public enum EquipmentSlot { Head, Chest, Legs, Weapon, Shield, Feet}
+public enum EquipmentSlot {Head, Chest, Legs, Weapon, Shield, Feet}

@@ -36,6 +36,6 @@ public class HealthBar : MonoBehaviour
     {
         SetFill(AdjustCharacterHealth());
         healthValueInt = (int)(playerHealth.HP);
-        healthValue.text = $"{healthValueInt}";
+        healthValue.text = $"{healthValueInt} / {playerHealth.MaxHP}";
     }
 }

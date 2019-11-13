@@ -44,6 +44,7 @@ public class EquipmentManager : MonoBehaviour
 
     Inventory inventory;
 
+
     void Start()
     {
         inventory = Inventory.instance;
