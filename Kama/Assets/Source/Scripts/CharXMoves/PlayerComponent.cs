@@ -69,7 +69,7 @@ public class PlayerComponent : MonoBehaviour
     {
         //Animator anim;
         GetComponent<Animator>().SetTrigger("Attack");
-        GetComponent<Animator>().SetInteger("Attacks", Random.Range(0, 2));
+        GetComponent<Animator>().SetInteger("Attacks", Random.Range(0, 3));
         SkillComponent.SpendSp(SkillConsumption);
         RaycastHit hit = new RaycastHit();
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -96,5 +96,22 @@ public class PlayerComponent : MonoBehaviour
         HealthComponent.Initialize(data.MaxHP, data.HP);
         SkillComponent.Initialize(data.MaxSP, data.SP);
         //LevelComponent.Initialize(data.currentLevel, data.maxLevel, data.currentEXP, data.maxEXP, data.currentATK, data.HP, data.SP); // a vérifier
+
+        GameObject collectibles = GameObject.Find("Interactables");
+        ItemPickup[] itemPickups = collectibles.GetComponentsInChildren<ItemPickup>();
+
+        for (int i = 0; i < data.itemIds.Length; i++)
+            foreach (ItemPickup itemPickup in itemPickups)
+                if (data.itemIds[i] == itemPickup.item.id)
+                    if (Inventory.instance.items.Count != data.itemIds.Length)
+                    {
+                        //if (itemPickup.item.id == 2)
+                        //{
+                        //    for (int j = 0; j > data.potionCount; j++)
+                        //        Inventory.instance.Add(itemPickup.item);
+                        //}
+                        //else
+                            Inventory.instance.Add(itemPickup.item);
+                    }
     } 
 }

@@ -17,6 +17,9 @@ public class PlayerData
     public float maxEXP;
     public float currentATK;
 
+    public int potionCount;
+    public int[] itemIds;
+
     public PlayerData(PlayerComponent player)
     {
         position = new float[3];
@@ -35,9 +38,16 @@ public class PlayerData
         maxEXP = player.LevelComponent.maxEXP;
         currentATK = player.LevelComponent.CurrentATK;
 
-        /*GameObject.Find("KAMA");
-        Item item = new Item();
-        item.gameObject = GameObject.Find("KAMA");
-        Inventory.instance.Add(item);*/
+        int inventorySize = 0;
+        potionCount = 0;
+        itemIds = new int[Inventory.instance.items.Count];
+        foreach (Item item in Inventory.instance.items)
+        {
+            if (item.id == 2)
+                potionCount++;
+
+            itemIds[inventorySize] = item.id;
+            inventorySize++;
+        }
     }
 }

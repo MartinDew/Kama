@@ -33,13 +33,20 @@ public class PlayerSwordFightComponent : MonoBehaviour, IAttackComponent
     {
         if ((SwordComponent = GetComponentInChildren<IWeaponComponent>()) == null)
         {
-            SwordComponent = new Sword(0, 0, 0, 0, 0, "Vide");
+            SwordComponent = NoWeapon();
         }
         swordFight = new SwordFightingComponent(BaseDamage, AttackRange, AttackSpeed, SwordComponent);
     }
 
+    private Sword NoWeapon()
+    {
+        return new Sword(0, 0, 0, 0, 0, "Vide");
+    }
+
     public void equipWeapon(IWeaponComponent weapon)
     {
+        if (weapon == null)
+            weapon = NoWeapon();
         swordFight.changeWeapon(weapon);
         Debug.Log($"New weapon equipped {weaponComponent.name}");
     }
