@@ -83,7 +83,10 @@ public class EquipmentManager : MonoBehaviour
         if (currentEquipment[slotIndex] != null)
         {
             oldItem = currentEquipment[slotIndex];
-
+            if (slotIndex == (int)EquipmentSlot.Weapon)
+            {
+                UnequipPhysicalWeapon();
+            }
             inventory.Add(oldItem);
 
         }
@@ -104,9 +107,10 @@ public class EquipmentManager : MonoBehaviour
             newItem.gameObject.SetActive(true);
             newItem.gameObject.transform.SetParent(GameObject.FindGameObjectWithTag("MainWeaponBone").transform);
             newItem.gameObject.transform.position = GameObject.FindGameObjectWithTag("MainWeaponBone").transform.position;
-            //newItem.gameObject.transform.rotation = new Quaternion(0,0,0,0); //GameObject.FindGameObjectWithTag("MainWeaponBone").transform.rotation;
             newItem.gameObject.GetComponent<ItemPositionnig>().Position();
+            newItem.gameObject.GetComponent<ItemPickup>().enabled = false;
             player.SendMessage("equipWeapon", newItem.gameObject.GetComponent<IWeaponComponent>());
+            PlayerManager.instance.equippedWeapon = newItem.gameObject;
         }
         //equippedItems [itemIndex] = newMesh.gameObject;
 
@@ -140,6 +144,8 @@ public class EquipmentManager : MonoBehaviour
         for (int i = 0; i < currentEquipment.Length; i++)
         {
             Unequip(i);
+            UnequipPhysicalWeapon();
+            PlayerManager.instance.player.SendMessage("equipWeapon", null);
         }
         EquipAllDefault();
     }
@@ -166,4 +172,10 @@ public class EquipmentManager : MonoBehaviour
         currentMeshes[slotIndex] = newMesh;
     }
 
+    private void UnequipPhysicalWeapon()
+    {
+        GameObject currentWeapon = PlayerManager.instance.equippedWeapon;
+        currentWeapon.SetActive(false);
+        currentWeapon.transform.SetParent(null);
+    }
 }

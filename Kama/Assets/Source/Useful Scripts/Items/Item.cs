@@ -16,7 +16,6 @@ public class Item : ScriptableObject {
 	{
 		// Use the item
 		// Something may happen
-        //if ()
 	}
 
 	// Call this method to remove the item from inventory
