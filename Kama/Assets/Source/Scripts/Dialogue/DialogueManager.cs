@@ -8,14 +8,21 @@ public class DialogueManager : MonoBehaviour
     public float radius = 20f;
     public Text nameText;
     public Text dialogueText;
+    public Text questText;
     public Image dialogueBox;
     //public Animator animator;
     private float distance;
     private Queue<string> sentences;
+    private GameObject mike;
+    private GameObject lea;
+    private GameObject entrance;
     private void Start()
     {
         sentences = new Queue<string>();
         dialogueBox.gameObject.SetActive(false);
+        mike = GameObject.Find("NPC Mike");
+        lea = GameObject.Find("NPC Léa");
+        entrance = GameObject.Find("Entrance");
     }
     private void Update()
     {
@@ -40,6 +47,23 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
+            if (nameText.text == "Mike" && questText.text == "- Parler à Mike")
+            {
+                questText.text = "- Éliminer au moins 5 goblins";
+                mike.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1]; 
+                mike.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Complète ma quête ou va voir Léa si c'est déjà fait.";
+            }
+
+            if (nameText.text == "Léa" && questText.text == "- Aller voir Léa")
+            {
+                entrance.GetComponent<DoorOpen>().enabled = true;
+                questText.text = "- Entrer dans le donjon";
+                lea.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
+                mike.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
+                lea.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Tu dois aller vaincre Kragz au donjon!";
+                mike.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Tu dois aller vaincre Kragz au donjon!";
+            }
+
             EndDialogue();
             return;
         }
