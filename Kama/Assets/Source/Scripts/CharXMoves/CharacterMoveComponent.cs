@@ -20,6 +20,8 @@ public class CharacterMoveComponent : MonoBehaviour
     //Rigidbody rb;
     public GameObject target;
     CharacterController controller;
+    //public float minClamp = -53f;
+    private float vertVelocity = 0f;
 
     private Vector3 moveDirection = Vector3.zero;
     void Awake()
@@ -41,23 +43,34 @@ public class CharacterMoveComponent : MonoBehaviour
             // Start the animations
             anim.SetFloat("Direction", direction);
             anim.SetFloat("Speed", speed);
+            Debug.Log(controller.isGrounded);
+
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+            ////transform.Translate(speed, 0, direction);  
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection = moveDirection.normalized * speedAmp;
 
 
+            //  vertVelocity = 0f;
             if (Input.GetButtonDown("Jump") && controller.isGrounded)
             {
                 anim.SetTrigger("Jump");
                 anim.SetBool("Grounded", false);
+
+                vertVelocity += jumpForce;
+                vertVelocity = Mathf.Clamp(vertVelocity, gravity, jumpForce);
+                moveDirection.y = vertVelocity;
                 //jump = new Vector3(direction, 20.0f, speed);
                 //rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-                controller.Move(new Vector3(0, jumpForce, 0) * Time.deltaTime);
+                //controller.Move(new Vector3(0, jumpForce, 0) * Time.deltaTime);
 
             }
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            ////transform.Translate(speed, 0, direction);  
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection = moveDirection.normalized * speedAmp;
+
             // apply gravity
-            moveDirection.y -= gravity * Time.deltaTime;
+            vertVelocity += Physics.gravity.y * Time.deltaTime;
+            vertVelocity = Mathf.Clamp(vertVelocity, gravity, jumpForce);
+            moveDirection.y = vertVelocity;
 
             // Move the character 
             //controller.Move(distance);

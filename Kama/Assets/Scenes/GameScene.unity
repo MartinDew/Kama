@@ -29515,13 +29515,25 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.6
+  m_Height: 1.5
   m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &646095226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646095215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce804e57145b7b44a9bfc28e5bb92fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &646156110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31735,7 +31747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &726575888
 RectTransform:
   m_ObjectHideFlags: 0
@@ -71601,7 +71613,7 @@ PrefabInstance:
     - target: {fileID: 6010375132134530109, guid: 4fdea373b829a1642b192a27668f45ce,
         type: 3}
       propertyPath: maxHp
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2028760432540334745, guid: 4fdea373b829a1642b192a27668f45ce,
         type: 3}
@@ -71755,23 +71767,18 @@ PrefabInstance:
       objectReference: {fileID: 1170985283}
     - target: {fileID: 6010375132134530107, guid: 4fdea373b829a1642b192a27668f45ce,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: jumpForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010375132134530107, guid: 4fdea373b829a1642b192a27668f45ce,
+        type: 3}
+      propertyPath: minClamp
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 6010375132134530107, guid: 4fdea373b829a1642b192a27668f45ce,
         type: 3}
       propertyPath: gravity
-      value: 30000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6010375132134530107, guid: 4fdea373b829a1642b192a27668f45ce,
-        type: 3}
-      propertyPath: speedAmp
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6010375132134530107, guid: 4fdea373b829a1642b192a27668f45ce,
-        type: 3}
-      propertyPath: jumpForce
-      value: 1000
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 6010375132134530105, guid: 4fdea373b829a1642b192a27668f45ce,
         type: 3}

@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedAmp: 30
-  gravity: 3000
+  gravity: 100
   jumpForce: 1000
   inventoryUI: {fileID: 0}
   target: {fileID: 0}
@@ -1112,7 +1112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillConsumption: 5
+  gameOverClip: {fileID: 0}
   levelText: {fileID: 0}
+  swordSound: {fileID: 0}
 --- !u!114 &1134274580514198096
 MonoBehaviour:
   m_ObjectHideFlags: 0
