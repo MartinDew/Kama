@@ -22,13 +22,15 @@ public class CharacterMoveComponent : MonoBehaviour
     CharacterController controller;
     //public float minClamp = -53f;
     private float vertVelocity = 0f;
+    private float walkSpeed;
+    private float runSpeed;
 
     private Vector3 moveDirection = Vector3.zero;
     void Awake()
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-        // rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -40,6 +42,8 @@ public class CharacterMoveComponent : MonoBehaviour
             grounded = anim.GetBool("Grounded");
             direction = Input.GetAxis("Horizontal");
             speed = Input.GetAxis("Vertical");
+            if (!anim.GetBool("Run"))
+                speed /= 2;
             // Start the animations
             anim.SetFloat("Direction", direction);
             anim.SetFloat("Speed", speed);
