@@ -77487,10 +77487,10 @@ RectTransform:
   m_Father: {fileID: 561674161}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 835.9995, y: -475.00024}
-  m_SizeDelta: {x: 317.66, y: 152.71}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -124.00049, y: 57}
+  m_SizeDelta: {x: 317.66003, y: 152.71002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1703022430
 MonoBehaviour:
@@ -95226,7 +95226,7 @@ MonoBehaviour:
     sentences:
     - Bonjour! Je m'appelle Mike.
     - "Les goblins ont commenc\xE9 \xE0 menacer les villageois la nuit!"
-    - "Pourrais-tu nous aider \xE0 en \xE9liminer au moins 5?"
+    - "Pourrais-tu nous aider \xE0 en \xE9liminer 5?"
     - "Vas voir L\xE9a quand ce sera fait."
 --- !u!4 &2046121340 stripped
 Transform:
@@ -98794,6 +98794,11 @@ PrefabInstance:
       propertyPath: winMusic
       value: 
       objectReference: {fileID: 8300000, guid: fad01f4c2891a714a951cd2926b6aba3, type: 3}
+    - target: {fileID: 8107627509705924873, guid: 346ff9ba4e6d68f45a12aeb3796f0995,
+        type: 3}
+      propertyPath: maxHp
+      value: 350
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 346ff9ba4e6d68f45a12aeb3796f0995, type: 3}
 --- !u!1001 &1408990818518335211
