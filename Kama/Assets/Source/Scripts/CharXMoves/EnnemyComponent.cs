@@ -55,10 +55,10 @@ public class EnnemyComponent : MonoBehaviour
             target.LevelComponent.UpdateEXP(Level * LevelClass.enemyEXP);
             Debug.Log($"Player has {target.LevelComponent.CurrentEXP} EXP!");
 
-            if (questText.GetComponent<Text>().text == "- Éliminer au moins 5 goblins")
+            if (questText.GetComponent<Text>().text == "- Éliminer 5 goblins")
                 goblinsKilled++;
 
-            if (goblinsKilled == 5 && !questHasBeenGiven)
+            if (goblinsKilled == 5 && !questHasBeenGiven && questText.GetComponent<Text>().text == "- Éliminer 5 goblins")
             {
                 questText.GetComponent<Text>().text = "- Aller voir Léa";
                 lea.GetComponent<DialogueTrigger>().dialogue.sentences = new string[4];

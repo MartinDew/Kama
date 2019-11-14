@@ -49,7 +49,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (nameText.text == "Mike" && questText.text == "- Parler à Mike")
             {
-                questText.text = "- Éliminer au moins 5 goblins";
+                questText.text = "- Éliminer 5 goblins";
                 mike.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1]; 
                 mike.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Complète ma quête ou va voir Léa si c'est déjà fait.";
             }

@@ -17,4 +17,4 @@ MonoBehaviour:
   showInInventory: 1
   gameObject: {fileID: 0}
   id: 2
-  healthGain: 10
+  healthGain: 20
