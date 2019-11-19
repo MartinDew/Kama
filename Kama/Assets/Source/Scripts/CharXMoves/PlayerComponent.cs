@@ -44,7 +44,7 @@ public class PlayerComponent : MonoBehaviour
         //player.SkillComponent.OnSpChanged += () => Debug.Log($"The character has {player.SkillComponent.Sp}");
         player.LevelComponent.OnLevelChanged += () =>
         {
-            levelText.text = "Niveau\n" + LevelComponent.CurrentLevel; 
+            levelText.text = "Niveau\n" + LevelComponent.CurrentLevel;
             HealthComponent.Initialize(LevelComponent.CurrentHP, LevelComponent.CurrentHP);
             SkillComponent.Initialize(LevelComponent.CurrentSP, LevelComponent.CurrentSP);
             GetComponent<AudioSource>().Play();
@@ -101,23 +101,32 @@ public class PlayerComponent : MonoBehaviour
 
         HealthComponent.Initialize(data.MaxHP, data.HP);
         SkillComponent.Initialize(data.MaxSP, data.SP);
-        //LevelComponent.Initialize(data.currentLevel, data.maxLevel, data.currentEXP, data.maxEXP, data.currentATK, data.HP, data.SP); // a vérifier
+        LevelComponent.Initialize(data.level, data.maxLevel, data.EXP, data.maxEXP, data.ATK, data.HP, data.SP);
+        levelText.text = "Niveau\n" + LevelComponent.CurrentLevel;
+        SaveInventory(data);
+    }
 
+    private void SaveInventory(PlayerData data)
+    {
+        bool savedPotions = false;
         GameObject collectibles = GameObject.Find("Interactables");
         ItemPickup[] itemPickups = collectibles.GetComponentsInChildren<ItemPickup>();
+
+        Inventory.instance.items.Clear();
 
         for (int i = 0; i < data.itemIds.Length; i++)
             foreach (ItemPickup itemPickup in itemPickups)
                 if (data.itemIds[i] == itemPickup.item.id)
-                    if (Inventory.instance.items.Count != data.itemIds.Length)
+                    if (itemPickup.item.name == "Health Potion")
                     {
-                        //if (itemPickup.item.id == 2)
-                        //{
-                        //    for (int j = 0; j > data.potionCount; j++)
-                        //        Inventory.instance.Add(itemPickup.item);
-                        //}
-                        //else
-                            Inventory.instance.Add(itemPickup.item);
+                        if (!savedPotions)
+                        {
+                            for (int j = 0; j < data.potionsCount; j++)
+                                Inventory.instance.Add(itemPickup.item);
+                            savedPotions = true;
+                        }
                     }
-    } 
+                    else
+                        Inventory.instance.Add(itemPickup.item);
+    }
 }
