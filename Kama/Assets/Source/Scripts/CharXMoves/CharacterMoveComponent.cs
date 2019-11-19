@@ -47,7 +47,7 @@ public class CharacterMoveComponent : MonoBehaviour
             // Start the animations
             anim.SetFloat("Direction", direction);
             anim.SetFloat("Speed", speed);
-            Debug.Log(controller.isGrounded);
+            //Debug.Log(controller.isGrounded);
 
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 

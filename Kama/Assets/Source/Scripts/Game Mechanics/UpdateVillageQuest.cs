@@ -12,7 +12,7 @@ public class UpdateVillageQuest : MonoBehaviour
         if (collider == playerCollider)
         {
             if (questText.text == "- Trouver le village")
-                questText.text = "- Parler à Mike";
+                questText.text = "- Parler à Arthur";
         }
     }
 }
