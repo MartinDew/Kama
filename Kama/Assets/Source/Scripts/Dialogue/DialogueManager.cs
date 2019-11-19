@@ -13,14 +13,14 @@ public class DialogueManager : MonoBehaviour
     //public Animator animator;
     private float distance;
     private Queue<string> sentences;
-    private GameObject mike;
+    private GameObject arthur;
     private GameObject lea;
     private GameObject entrance;
     private void Start()
     {
         sentences = new Queue<string>();
         dialogueBox.gameObject.SetActive(false);
-        mike = GameObject.Find("NPC Mike");
+        arthur = GameObject.Find("NPC Arthur");
         lea = GameObject.Find("NPC Léa");
         entrance = GameObject.Find("Entrance");
     }
@@ -47,11 +47,11 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
-            if (nameText.text == "Mike" && questText.text == "- Parler à Mike")
+            if (nameText.text == "Arthur" && questText.text == "- Parler à Arthur")
             {
                 questText.text = "- Éliminer 5 goblins";
-                mike.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1]; 
-                mike.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Complète ma quête ou va voir Léa si c'est déjà fait.";
+                arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1]; 
+                arthur.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Complète ma quête ou va voir Léa si c'est déjà fait.";
             }
 
             if (nameText.text == "Léa" && questText.text == "- Aller voir Léa")
@@ -59,9 +59,9 @@ public class DialogueManager : MonoBehaviour
                 entrance.GetComponent<DoorOpen>().enabled = true;
                 questText.text = "- Entrer dans le donjon";
                 lea.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
-                mike.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
+                arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
                 lea.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Tu dois aller vaincre Kragz au donjon!";
-                mike.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Tu dois aller vaincre Kragz au donjon!";
+                arthur.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Tu dois aller vaincre Kragz au donjon!";
             }
 
             EndDialogue();

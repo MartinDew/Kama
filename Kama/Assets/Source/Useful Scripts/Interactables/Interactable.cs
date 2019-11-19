@@ -15,13 +15,12 @@ public class Interactable : MonoBehaviour
     public Transform interactionTransform;
     private Transform player;       // Reference to the player transform
     float distance;
-    private Text InteractText;
-    private Image InteractBackground;
+    private RectTransform interactText, interactBackground;
     private void Start()
     {        
         player = GameObject.FindGameObjectWithTag("Main Character").transform;
-        InteractText = GameObject.Find("Interact Text").GetComponent<Text>();
-        InteractBackground = GameObject.Find("Interact Text Background").GetComponent<Image>();
+        interactText = GameObject.Find("Interact Text").GetComponent<RectTransform>();
+        interactBackground = GameObject.Find("Interact Text Background").GetComponent<RectTransform>();
     }
 
     void Update()
@@ -30,16 +29,17 @@ public class Interactable : MonoBehaviour
         // If we haven't already interacted and the player is close enough
         if (distance <= radius)
         {
-            InteractText.enabled = true;
-            InteractBackground.enabled = true;
+            Debug.Log("Close enough to " + interactionTransform.name);
+            interactBackground.gameObject.SetActive(true);
+            interactText.gameObject.SetActive(true);
 
             if (Input.GetButtonDown("Use"))
                 Interact();
         }
         else
         {
-            InteractText.enabled = false;
-            InteractBackground.enabled = false;
+            interactBackground.gameObject.SetActive(false);
+            interactText.gameObject.SetActive(false);
         }
     }
 
