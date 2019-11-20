@@ -57,6 +57,7 @@ public class DialogueManager : MonoBehaviour
             if (nameText.text == "Léa" && questText.text == "- Aller voir Léa")
             {
                 entrance.GetComponent<DoorOpen>().enabled = true;
+                entrance.GetComponentInChildren<Canvas>().enabled = true;
                 questText.text = "- Entrer dans le donjon";
                 lea.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
                 arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];

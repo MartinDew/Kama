@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 10
-  interactionTransform: {fileID: 408216}
   item: {fileID: 11400000, guid: 6b85abb378c2c724b87d2d348a90f984, type: 2}
 --- !u!114 &517503291997219845
 MonoBehaviour:

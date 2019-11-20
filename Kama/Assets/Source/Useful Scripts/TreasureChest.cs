@@ -8,19 +8,26 @@ public class TreasureChest : Interactable
 	Animator animator;
 	public Item[] items;
     bool isOpen = false;
+    Canvas interactCanvas;
 
 	private void Awake() 
     {
 		animator = GetComponent<Animator>();
 	}
 
-	public override void Interact()
+    private void Start()
+    {
+        interactCanvas = GetComponentInChildren<Canvas>();
+    }
+
+    public override void Interact()
 	{
         if (!isOpen)
         {
             base.Interact();
             animator.SetTrigger("Open");
             CollectTreasure();
+            interactCanvas.enabled = false;
         }
     }
 

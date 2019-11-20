@@ -7,16 +7,11 @@ public class Consumable : Item {
 
     public int healthGain;
     GameObject player;
-    bool instanciated = false;
 
     // This is called when pressed in the inventory
     public override void Use()
 	{
-        if (!instanciated)
-        {
-            player = GameObject.FindGameObjectWithTag("Main Character");
-            instanciated = true;
-        }
+        player = GameObject.FindGameObjectWithTag("Main Character");
 
         // Heal the player
         player.GetComponent<StandartHealthComponent>().Increase(healthGain);

@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class DoorOpen : Interactable
 {
-    public override void Interact()
-    {
-        Destroy(gameObject);
-    }
+    public override void Interact() => Destroy(gameObject);
 }

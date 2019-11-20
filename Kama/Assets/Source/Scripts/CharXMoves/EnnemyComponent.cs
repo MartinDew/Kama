@@ -20,6 +20,7 @@ public class EnnemyComponent : MonoBehaviour
     public int Level;
     public PlayerComponent target;
     public AudioClip winMusic;
+    public GameObject winScreen;
     AudioSource audioSource;
     void Awake()
     {
@@ -50,8 +51,9 @@ public class EnnemyComponent : MonoBehaviour
         if (ennemy.EnnemyHealthComponent.HP <= 0 && !ennemyController.death)
         {
             ennemyController.Die();
-            StartCoroutine(DestroyTheEnemy()); // Roule le timer pour utiliser le yield return
+            StartCoroutine(DestroyTheEnemy());
             DestroyTheEnemy();
+            StartCoroutine(ShowWinScreen());
             target.LevelComponent.UpdateEXP(Level * LevelClass.enemyEXP);
             Debug.Log($"Player has {target.LevelComponent.CurrentEXP} EXP!");
 
@@ -71,11 +73,20 @@ public class EnnemyComponent : MonoBehaviour
 
             if (isBoss)
             {
+                
                 audioSource.clip = winMusic;
                 audioSource.volume = .5f;
                 audioSource.Play();
+                ShowWinScreen();
             }
         }
+    }
+
+    private IEnumerator ShowWinScreen()
+    {
+        yield return new WaitForSeconds(2.5f);
+        Debug.Log("Test");
+        winScreen.SetActive(true);
     }
 
     private IEnumerator DestroyTheEnemy()
