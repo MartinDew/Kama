@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5393162860494983933}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.022168173, y: -0.12442911, z: -5.2758856}
-  m_LocalScale: {x: 0.14285713, y: 0.14285713, z: 0.14285713}
+  m_LocalPosition: {x: -0.022168173, y: -0.12442911, z: -5.2758846}
+  m_LocalScale: {x: 0.1428571, y: 0.1428571, z: 0.1428571}
   m_Children: []
   m_Father: {fileID: 3866732739969316855}
   m_RootOrder: 0
@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 1
-  Target: {fileID: 3866732739969316855}
-  Player: {fileID: 6010375132134530111}
+  target: {fileID: 0}
+  player: {fileID: 0}
   Obstruction: {fileID: 0}
 --- !u!1 &6010375131670253462
 GameObject:
