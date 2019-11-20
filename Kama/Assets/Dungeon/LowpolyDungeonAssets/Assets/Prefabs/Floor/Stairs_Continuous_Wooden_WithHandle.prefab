@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2139242917996900091}
   m_Layer: 0
   m_Name: Stairs_Continuous_Wooden_WithHandle
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

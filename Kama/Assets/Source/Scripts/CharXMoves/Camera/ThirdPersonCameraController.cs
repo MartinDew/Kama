@@ -7,18 +7,22 @@ public class ThirdPersonCameraController : MonoBehaviour
     public float rotationSpeed = 1;
     public Transform Target, Player;
     float mouseX, mouseY;
+    float rayDistance;
+    float originalDistance;
 
     public Transform Obstruction;
     float zoomSpeed = 2f;
 
     private void Start()
     {
+        originalDistance = Vector3.Distance(transform.position, Target.transform.position);
         Obstruction = Target;
         Player = PlayerManager.instance.player.transform;   
     }
     void LateUpdate()
     {
         CamControl();
+        ViewObstructed();
     }
 
     private void CamControl()
@@ -43,18 +47,37 @@ public class ThirdPersonCameraController : MonoBehaviour
     private void ViewObstructed()
     {
         RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, Target.position - transform.position, out hit, 4.5f))
+        rayDistance = Vector3.Distance(transform.position, Target.transform.position);
+        if (Physics.Raycast(transform.position, Target.position - transform.position, out hit, rayDistance))
         {
+            Debug.Log(Obstruction.gameObject.name);
+            Debug.Log(hit.collider.gameObject.tag);
             if (hit.collider.gameObject.tag != "Main Character")
             {
                 Obstruction = hit.transform;
                 Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+            
+                if (Vector3.Distance(Obstruction.position, transform.position) >= 3f && Vector3.Distance(transform.position, Target.position) >= 1.5f)
+                {
+                    transform.Translate(Vector3.forward * zoomSpeed * Time.deltaTime);
+                }
             }
             else
             {
-
+                Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                if (Vector3.Distance(transform.position, Target.position) < originalDistance)
+                {
+                    transform.Translate(Vector3.back * zoomSpeed * Time.deltaTime);
+                }
             }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draws a 5 unit long red line in front of the object
+        Gizmos.color = Color.red;
+        Vector3 direction = transform.TransformDirection(Vector3.forward) * rayDistance;
+        Gizmos.DrawRay(transform.position, direction);
     }
 }
