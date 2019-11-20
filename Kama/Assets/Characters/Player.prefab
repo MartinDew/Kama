@@ -139,7 +139,6 @@ MonoBehaviour:
   rotationSpeed: 1
   target: {fileID: 0}
   player: {fileID: 0}
-  Obstruction: {fileID: 0}
 --- !u!1 &6010375131670253462
 GameObject:
   m_ObjectHideFlags: 0
@@ -3612,7 +3611,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6010375133525349252}
   - component: {fileID: 6010375133525349250}
-  - component: {fileID: 6010375133525349251}
   m_Layer: 0
   m_Name: CharBaseM
   m_TagString: Main Character
@@ -3723,20 +3721,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000000023283064, y: 0.012148113, z: 0.00095748063}
     m_Extent: {x: 0.0120819025, y: 0.01313153, z: 0.0031550596}
   m_DirtyAABB: 0
---- !u!64 &6010375133525349251
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6010375133525349253}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 4300000, guid: 7998a21e3e70bb3449328b5cfab58522, type: 3}
 --- !u!1 &6010375133551763226
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,19 +10,19 @@ public class ThirdPersonCameraController : MonoBehaviour
     float rayDistance;
     float originalDistance;
 
-    public Transform Obstruction;
+    private Transform Obstruction;
     float zoomSpeed = 2f;
 
     private void Start()
     {
         originalDistance = Vector3.Distance(transform.position, target.transform.position);
         Obstruction = target;
-        player = PlayerManager.instance.player.transform;   
+        player = PlayerManager.instance.player.transform;
     }
     void LateUpdate()
     {
         CamControl();
-        //ViewObstructed();
+        ViewObstructed();
     }
 
     private void CamControl()
@@ -50,13 +50,17 @@ public class ThirdPersonCameraController : MonoBehaviour
         rayDistance = Vector3.Distance(transform.position, target.transform.position);
         if (Physics.Raycast(transform.position, target.position - transform.position, out hit, rayDistance))
         {
-            Debug.Log(Obstruction.gameObject.name);
-            Debug.Log(hit.collider.gameObject.tag);
+            Debug.Log(Obstruction.gameObject.tag + " " + Obstruction.gameObject.name);
+            Debug.Log(hit.collider.gameObject.tag + " " + hit.collider.gameObject.name);
+            if (Obstruction.gameObject != hit.collider.gameObject && Obstruction.GetComponent<MeshRenderer>() != null)
+            {
+                Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            }
             if (hit.collider.gameObject.tag != "Main Character")
             {
+
                 Obstruction = hit.transform;
                 Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-            
                 if (Vector3.Distance(Obstruction.position, transform.position) >= 3f && Vector3.Distance(transform.position, target.position) >= 1.5f)
                 {
                     transform.Translate(Vector3.forward * zoomSpeed * Time.deltaTime);

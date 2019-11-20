@@ -33,7 +33,7 @@ public class PlayerComponent : MonoBehaviour
             SkillComponent = GetComponent<ISkillComponent>(),
             LevelComponent = GetComponent<ILevelComponent>()
         };
-        LevelComponent.InitializeStats(100, 100, 10); // FIX T'ES AFFAIRE MARTIN (Tes interfaces retournent toutes 0 exemple : AttackComponent.baseDamage TOUJOURS = à 0)
+        LevelComponent.InitializeStats(100, 100, 10); // FIX TES AFFAIRES MARTIN (Tes interfaces retournent toutes 0 exemple : AttackComponent.baseDamage TOUJOURS = à 0)
                                                       // Ça commence à être agaçant de toujours devoir réparer tes erreurs quand tu push, à chaque fois c'est ça, CHECK PLUS
         Debug.Log("Current: " + player.LevelComponent.CurrentEXP);
     }
