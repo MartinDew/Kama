@@ -9,6 +9,10 @@ TagManager:
   - Weapon
   - Inventory
   - MainWeaponBone
+  - Map
+  - Wall
+  - Ground
+  - MapObject
   layers:
   - Default
   - TransparentFX

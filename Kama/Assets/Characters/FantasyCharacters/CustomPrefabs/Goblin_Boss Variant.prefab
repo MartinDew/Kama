@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 9117139127557096936, guid: 2b128dff747321d47bbd046a47f4521f,
         type: 3}
       propertyPath: m_Name
-      value: Goblin_Boss
+      value: Goblin_Boss Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9117139126465881097, guid: 2b128dff747321d47bbd046a47f4521f,
         type: 3}
