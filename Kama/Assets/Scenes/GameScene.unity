@@ -72443,19 +72443,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6010375132134530110, guid: 4fdea373b829a1642b192a27668f45ce,
         type: 3}
-      propertyPath: SkillConsumption
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6010375132134530110, guid: 4fdea373b829a1642b192a27668f45ce,
-        type: 3}
       propertyPath: levelText
       value: 
       objectReference: {fileID: 79731813}
-    - target: {fileID: 6010375132134530110, guid: 4fdea373b829a1642b192a27668f45ce,
-        type: 3}
-      propertyPath: gameOverClip
-      value: 
-      objectReference: {fileID: 8300000, guid: ed698cf827f68494dba1b6c57f0f13fc, type: 3}
     - target: {fileID: 6010375132134530110, guid: 4fdea373b829a1642b192a27668f45ce,
         type: 3}
       propertyPath: swordSound
@@ -72658,26 +72648,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 646095215}
-    - target: {fileID: 7048783825696895342, guid: 4fdea373b829a1642b192a27668f45ce,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048783825696895342, guid: 4fdea373b829a1642b192a27668f45ce,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048783825696895342, guid: 4fdea373b829a1642b192a27668f45ce,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048783825696895342, guid: 4fdea373b829a1642b192a27668f45ce,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1943778893}
     - target: {fileID: 7992128464410435277, guid: 4fdea373b829a1642b192a27668f45ce,
         type: 3}
       propertyPath: m_Layer
@@ -87337,12 +87307,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4303056760651506, guid: 6dcdd798812b85b4796fb2548a3a311d,
     type: 3}
   m_PrefabInstance: {fileID: 1942117252}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1943778893 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3866732739969316855, guid: 4fdea373b829a1642b192a27668f45ce,
-    type: 3}
-  m_PrefabInstance: {fileID: 1572463231}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1943884655
 PrefabInstance:

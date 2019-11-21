@@ -30,7 +30,6 @@ public class EnnemyComponent : MonoBehaviour
             EnnemyHealthComponent = GetComponent<IHealthComponent>(),
             EnnemyAttackComponent = GetComponent<IAttackComponent>(),
         };
-        //AnimationHelper = GetComponent<IAnimationHelper>();
         ennemyController = GetComponent<EnnemyController>();
         target = GameObject.FindGameObjectWithTag("Main Character").GetComponent<PlayerComponent>();
         lea = GameObject.Find("NPC Léa");
@@ -43,7 +42,6 @@ public class EnnemyComponent : MonoBehaviour
 
         ennemy.EnnemyHealthComponent.OnHpChanged += () =>
         {
-            Debug.Log($"ennemy has {ennemy.EnnemyHealthComponent.HP} life remaining");
         };
     }
 
@@ -60,6 +58,8 @@ public class EnnemyComponent : MonoBehaviour
             if (questText.GetComponent<Text>().text == "- Éliminer 5 goblins")
                 goblinsKilled++;
 
+            /// À la place de gérer ça sur un ennemi indépendant fait toi un quest manager que tu donnera au game manager pis qui gère toutes tes quêtes. 
+            /// Dans ce cas-ci il pourrait incrémenter les goblins morts.
             if (goblinsKilled == 5 && !questHasBeenGiven && questText.GetComponent<Text>().text == "- Éliminer 5 goblins")
             {
                 questText.GetComponent<Text>().text = "- Aller voir Léa";
@@ -86,7 +86,6 @@ public class EnnemyComponent : MonoBehaviour
     private IEnumerator ShowWinScreen()
     {
         yield return new WaitForSeconds(2.5f);
-        Debug.Log("Test");
         winScreen.SetActive(true);
     }
 

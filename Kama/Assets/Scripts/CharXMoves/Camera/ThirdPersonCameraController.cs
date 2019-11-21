@@ -11,7 +11,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     float originalDistance;
 
     private Transform Obstruction;
-    float zoomSpeed = 2f;
+    public float zoomSpeed = 2f;
 
     private void Start()
     {
@@ -46,17 +46,18 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     private void ViewObstructed()
     {
+        
         RaycastHit hit;
         rayDistance = Vector3.Distance(transform.position, target.transform.position);
         if (Physics.Raycast(transform.position, target.position - transform.position, out hit, rayDistance))
         {
-            Debug.Log(Obstruction.gameObject.tag + " " + Obstruction.gameObject.name);
-            Debug.Log(hit.collider.gameObject.tag + " " + hit.collider.gameObject.name);
+            Debug.Log(hit.collider.gameObject);
+            Debug.Log(hit.collider.gameObject.tag);
             if (Obstruction.gameObject != hit.collider.gameObject && Obstruction.GetComponent<MeshRenderer>() != null)
             {
                 Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
             }
-            if (hit.collider.gameObject.tag != "Main Character")
+            if (hit.collider.gameObject.tag != "Main Character" && hit.collider.gameObject.tag != "CharacterBones") 
             {
 
                 Obstruction = hit.transform;
@@ -68,7 +69,8 @@ public class ThirdPersonCameraController : MonoBehaviour
             }
             else
             {
-                Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                if (Obstruction.GetComponent<MeshRenderer>() != null)
+                    Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
                 if (Vector3.Distance(transform.position, target.position) < originalDistance)
                 {
                     transform.Translate(Vector3.back * zoomSpeed * Time.deltaTime);

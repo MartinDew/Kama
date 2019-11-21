@@ -15,7 +15,7 @@ public class StaminaComponent : MonoBehaviour, ISkillComponent
     public Action OnSpChanged { get => stamina.OnSpChanged; set => stamina.OnSpChanged = value; }
     public void Start()
     {
-        Debug.Log(stamina.Sp);
+
     }
 
 
