@@ -33,7 +33,8 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
 
     private void Awake()
     {
-        player = PlayerManager.instance.player;
+
+
     }
 
     /// <summary>
@@ -45,7 +46,10 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
     /// </summary>
     private void Start()
     {
+        player = PlayerManager.instance.player;
+
         levelClass = new LevelClass(GetComponent<IHealthComponent>().MaxHP, GetComponent<ISkillComponent>().MaxSp, GetComponent<IAttackComponent>().baseDamage); //Simple
+
         OnLevelChanged += () =>
         {
             GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + CurrentLevel;
