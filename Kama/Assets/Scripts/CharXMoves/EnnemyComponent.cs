@@ -42,6 +42,7 @@ public class EnnemyComponent : MonoBehaviour
 
         ennemy.EnnemyHealthComponent.OnHpChanged += () =>
         {
+            Debug.Log($"Enemy has {ennemy.EnnemyHealthComponent.HP} Health left");
         };
     }
 

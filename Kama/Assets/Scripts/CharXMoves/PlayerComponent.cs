@@ -39,15 +39,13 @@ public class PlayerComponent : MonoBehaviour
 
     private void Start()
     {
-
-
-        LevelComponent.OnLevelChanged += () =>
-        {
-            levelText.text = "Niveau\n" + LevelComponent.CurrentLevel;
-            HealthComponent.Initialize(LevelComponent.CurrentHP, LevelComponent.CurrentHP);
-            SkillComponent.Initialize(LevelComponent.CurrentSP, LevelComponent.CurrentSP);
-            GetComponent<AudioSource>().Play();
-        };
+        //LevelComponent.OnLevelChanged += () =>
+        //{
+        //    levelText.text = "Niveau\n" + LevelComponent.CurrentLevel;
+        //    HealthComponent.Initialize(LevelComponent.CurrentHP, LevelComponent.CurrentHP);
+        //    SkillComponent.Initialize(LevelComponent.CurrentSP, LevelComponent.CurrentSP);
+        //    GetComponent<AudioSource>().Play();
+        //};
     }
 
     private void Update()

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using KamaLib;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUpComponent : MonoBehaviour, ILevelComponent
 {
+    private GameObject player;
     private LevelClass levelClass;
     public const float defaultLevel = 1;
 
@@ -28,6 +30,12 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
     public void InitializeStats(float hp, float sp, float atk) => levelClass = new LevelClass(hp, sp, atk);
     public void LevelUp() =>  levelClass.LevelUp();
     public void UpdateEXP(float exp) => levelClass.UpdateEXP(exp);
+
+    private void Awake()
+    {
+        player = PlayerManager.instance.player;
+    }
+
     /// <summary>
     /// Lors du awake ou du start, qu'on utilise ici car on veut que tout le reste soit initialisé,
     /// Tu es supposé initialiser ton levelClass, donc appeler le constructeur. Ce que tu faisais, c'était d'appeler un constructeur 
@@ -35,7 +43,17 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
     /// c'est ce qui suit. Déclare toi un autre constructeur qui appel initializeStats dans ta classe puis passe les variables en paramètres.
     /// En résumé, le problème était bien ton code.
     /// </summary>
-    private void Start() => levelClass = new LevelClass(GetComponent<IHealthComponent>().MaxHP, GetComponent<ISkillComponent>().MaxSp, GetComponent<IAttackComponent>().baseDamage); //Simple
+    private void Start()
+    {
+        levelClass = new LevelClass(GetComponent<IHealthComponent>().MaxHP, GetComponent<ISkillComponent>().MaxSp, GetComponent<IAttackComponent>().baseDamage); //Simple
+        OnLevelChanged += () =>
+        {
+            GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + CurrentLevel;
+            GetComponent<IHealthComponent>().Initialize(CurrentHP, CurrentHP);
+            GetComponent<ISkillComponent>().Initialize(CurrentSP, CurrentSP);
+            GetComponent<AudioSource>().Play();
+        };
+    }
     public void UpdateATK(float atk) => levelClass.UpdateATK(atk);
     public void Initialize(float level, float maxlevel)
     {
