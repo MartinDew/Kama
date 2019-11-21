@@ -34,9 +34,9 @@ public class PlayerData
 
         // Level
         level = player.LevelComponent.CurrentLevel;
-        maxLevel = player.LevelComponent.maxLevel;
+        maxLevel = player.LevelComponent.MaxLevel;
         EXP = player.LevelComponent.CurrentEXP;
-        maxEXP = player.LevelComponent.maxEXP;
+        maxEXP = player.LevelComponent.MaxEXP;
         ATK = player.LevelComponent.CurrentATK;
 
         // Inventory

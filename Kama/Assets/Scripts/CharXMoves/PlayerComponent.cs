@@ -12,6 +12,7 @@ public class PlayerComponent : MonoBehaviour
     // public GameObject target;
     private PlayerClass player;
     //private IHealthComponent targetHealth;
+
     public IHealthComponent HealthComponent => player.HealthComponent;
     public IAttackComponent AttackComponent => player.AttackComponent;
     public ISkillComponent SkillComponent => player.SkillComponent;
@@ -33,14 +34,14 @@ public class PlayerComponent : MonoBehaviour
             SkillComponent = GetComponent<ISkillComponent>(),
             LevelComponent = GetComponent<ILevelComponent>()
         };
-        LevelComponent.InitializeStats(HealthComponent.HP, SkillComponent.Sp, AttackComponent.baseDamage); // FIX TES AFFAIRES MARTIN (Tes interfaces retournent toutes 0 exemple : AttackComponent.baseDamage TOUJOURS = à 0)
-                                                      // Ça commence à être agaçant de toujours devoir réparer tes erreurs quand tu push, à chaque fois c'est ça, CHECK PLUS
-        Debug.Log("Current: " + player.LevelComponent.CurrentEXP);
+    // Checker levelup component
     }
 
     private void Start()
     {
-        player.LevelComponent.OnLevelChanged += () =>
+
+
+        LevelComponent.OnLevelChanged += () =>
         {
             levelText.text = "Niveau\n" + LevelComponent.CurrentLevel;
             HealthComponent.Initialize(LevelComponent.CurrentHP, LevelComponent.CurrentHP);

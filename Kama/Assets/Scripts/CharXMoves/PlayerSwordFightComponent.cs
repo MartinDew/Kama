@@ -21,6 +21,7 @@ public class PlayerSwordFightComponent : MonoBehaviour, IAttackComponent
 
     public float attackRange => swordFight.attackRange;
 
+
     public IWeaponComponent weaponComponent => swordFight.weaponComponent;
 
     public float Attack() => swordFight.Attack();

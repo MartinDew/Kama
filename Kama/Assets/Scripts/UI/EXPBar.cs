@@ -30,13 +30,13 @@ public class EXPBar : MonoBehaviour
 
     private float AdjustEXP()
     {
-        return playerEXP.CurrentEXP / playerEXP.maxEXP;
+        return playerEXP.CurrentEXP / playerEXP.MaxEXP;
     }
 
     private void LateUpdate()
     {
         SetFill(AdjustEXP());
         XPValueInt = (int)playerEXP.CurrentEXP;
-        XPValue.text = $"{XPValueInt} / {playerEXP.maxEXP}";
+        XPValue.text = $"{XPValueInt} / {playerEXP.MaxEXP}";
     }
 }

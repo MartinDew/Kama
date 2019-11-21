@@ -51,8 +51,6 @@ public class ThirdPersonCameraController : MonoBehaviour
         rayDistance = Vector3.Distance(transform.position, target.transform.position);
         if (Physics.Raycast(transform.position, target.position - transform.position, out hit, rayDistance))
         {
-            Debug.Log(hit.collider.gameObject);
-            Debug.Log(hit.collider.gameObject.tag);
             if (Obstruction.gameObject != hit.collider.gameObject && Obstruction.GetComponent<MeshRenderer>() != null)
             {
                 Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;

@@ -69,8 +69,8 @@ public class CharacterMoveComponent : MonoBehaviour
                 anim.SetBool("Grounded", false);
 
                 vertVelocity += jumpForce;
-                vertVelocity = Mathf.Clamp(vertVelocity, gravity, jumpForce);
-                moveDirection.y = vertVelocity;
+                //vertVelocity = Mathf.Clamp(vertVelocity, gravity, jumpForce);
+                //moveDirection.y = vertVelocity;
                 //jump = new Vector3(direction, 20.0f, speed);
                 //rb.AddForce(jump * jumpForce, ForceMode.Impulse);
                 //controller.Move(new Vector3(0, jumpForce, 0) * Time.deltaTime);

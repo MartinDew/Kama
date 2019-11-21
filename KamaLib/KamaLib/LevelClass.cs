@@ -11,11 +11,11 @@ namespace KamaLib
         public Action OnExpChanged { get; set; }
         public Action OnLevelChanged { get; set; }
         public float CurrentLevel { get; private set; }
-        public float maxLevel { get; private set; }
-        public bool isMaxLevel { get; private set; }
+        public float MaxLevel { get; private set; }
+        public bool IsMaxLevel { get; private set; }
         public float CurrentATK { get; private set; }
         public float CurrentEXP { get; private set; }
-        public float maxEXP { get; private set; }
+        public float MaxEXP { get; private set; }
         public float CurrentHP { get; private set; }
         public float CurrentSP { get; private set; }
 
@@ -25,20 +25,23 @@ namespace KamaLib
         public LevelClass(float level, float maxlevel, float exp, float maxexp, float atk, float hp, float sp)
         {
             CurrentLevel = level;
-            maxLevel = maxlevel;
+            MaxLevel = maxlevel;
             CurrentEXP = exp;
-            maxEXP = maxexp;
+            MaxEXP = maxexp;
             CurrentATK = atk;
             CurrentHP = hp;
             CurrentSP = sp;
         }
-
+        public LevelClass(float hp, float sp, float atk)
+        {
+            InitializeStats(hp, sp, atk);
+        }
         public void Initialize(float level, float maxlevel, float exp, float maxexp, float atk, float hp, float sp)
         {
             CurrentLevel = level;
-            maxLevel = maxlevel;
+            MaxLevel = maxlevel;
             CurrentEXP = exp;
-            maxEXP = maxexp;
+            MaxEXP = maxexp;
             CurrentATK = atk;
             CurrentHP = hp;
             CurrentSP = sp;
@@ -51,7 +54,7 @@ namespace KamaLib
             CurrentATK = atk;
             CurrentLevel = defaultLevel;
             CurrentEXP = defaultExp;
-            maxEXP = defaultMaxExp;
+            MaxEXP = defaultMaxExp;
         }
 
         public void LevelUp()
@@ -62,19 +65,19 @@ namespace KamaLib
             CurrentSP += 5;
             UpdateATK(2);
             OnLevelChanged();
-            if (CurrentLevel == maxLevel)
-                isMaxLevel = true;
+            if (CurrentLevel == MaxLevel)
+                IsMaxLevel = true;
         }
 
         public void UpdateEXP(float exp)
         {
-            if (!isMaxLevel)
+            if (!IsMaxLevel)
             {
                 CurrentEXP += exp;
-                if (CurrentEXP >= maxEXP)
+                if (CurrentEXP >= MaxEXP)
                 {
                     LevelUp();
-                    maxEXP += nextEXP;
+                    MaxEXP += nextEXP;
                 }
             }
         }

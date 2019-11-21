@@ -4,6 +4,10 @@ using System.Text;
 
 namespace KamaLib
 {
+    /// <summary>
+    /// Le IWeapon component est une interface afin de garder une possibilité de modularité pour les armes.
+    /// Les armes prennent un nom, et des multiplicateurs.
+    /// </summary>
     public interface IWeaponComponent
     {
         string name { get; }
