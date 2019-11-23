@@ -16,27 +16,28 @@ public class EnnemyComponent : MonoBehaviour
     private GameObject questText;
     private GameObject lea;
     //public IAnimationHelper AnimationHelper;
-    public EnnemyController ennemyController;
+    private EnnemyController ennemyController;
     public int level;
-    public PlayerComponent target;
+    private PlayerComponent target;
     public AudioClip winMusic;
     public GameObject winScreen;
+    public AudioSource swordSound;
     AudioSource audioSource;
     void Awake()
     {
         level = 2;
-        ennemy = new EnnemyClass()
-        {
-            EnnemyHealthComponent = GetComponent<IHealthComponent>(),
-            EnnemyAttackComponent = GetComponent<IAttackComponent>(),
-        };
-        ennemyController = GetComponent<EnnemyController>();
         target = GameObject.FindGameObjectWithTag("Main Character").GetComponent<PlayerComponent>();
         lea = GameObject.Find("NPC Léa");
     }
 
     void Start()
     {
+        ennemy = new EnnemyClass()
+        {
+            EnnemyHealthComponent = GetComponent<IHealthComponent>(),
+            EnnemyAttackComponent = GetComponent<IAttackComponent>(),
+        };
+        ennemyController = GetComponent<EnnemyController>();
         questText = GameObject.Find("QuestText");
         audioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
 
@@ -76,6 +77,7 @@ public class EnnemyComponent : MonoBehaviour
             {
                 audioSource.clip = winMusic;
                 audioSource.volume = .5f;
+                audioSource.loop = false;
                 audioSource.Play();
 
                 StartCoroutine(ShowWinScreen());
@@ -88,6 +90,9 @@ public class EnnemyComponent : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         winScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        swordSound = null;
     }
 
     private IEnumerator DestroyTheEnemy()
@@ -95,5 +100,4 @@ public class EnnemyComponent : MonoBehaviour
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
-
 }

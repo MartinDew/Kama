@@ -19,5 +19,5 @@ MonoBehaviour:
   id: 1
   equipSlot: 3
   armorModifier: 0
-  damageModifier: 0
+  damageModifier: 2
   prefab: {fileID: 0}

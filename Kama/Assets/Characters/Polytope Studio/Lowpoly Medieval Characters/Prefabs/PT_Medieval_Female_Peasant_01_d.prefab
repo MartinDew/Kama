@@ -2827,7 +2827,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Parler (E)
+  m_Text: Parler (e)
 --- !u!1 &6016543694267775985
 GameObject:
   m_ObjectHideFlags: 0

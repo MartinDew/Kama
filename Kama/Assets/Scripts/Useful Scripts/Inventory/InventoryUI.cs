@@ -11,17 +11,23 @@ public class InventoryUI : MonoBehaviour {
     bool inventoryOpened = false;
 	Inventory inventory;
     new ThirdPersonCameraController camera;
+	GameObject save;
+    GameObject load;
 
-	void Start ()
+	private void Awake()
+	{
+		save = GameObject.Find("Save");
+        load = GameObject.Find("Load");
+	}
+	private void Start ()
 	{
 		inventory = Inventory.instance;
 		inventory.onItemChangedCallback += UpdateUI;
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ThirdPersonCameraController>();
-
     }
 
 	// Check to see if we should open/close the inventory
-	void Update ()
+	private void Update ()
 	{
 		if (Input.GetButtonDown("Inventory"))
 		{
@@ -30,11 +36,15 @@ public class InventoryUI : MonoBehaviour {
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+				save.SetActive(true);
+				load.SetActive(true);
             }
             else
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+				save.SetActive(false);
+				load.SetActive(false);
             }
             camera.enabled = !camera.enabled;
 			inventoryUI.SetActive(!inventoryUI.activeSelf);

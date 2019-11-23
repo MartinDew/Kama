@@ -69,7 +69,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 10
-  interactionTransform: {fileID: 443102}
   items: []
 --- !u!65 &8132030101447139165
 BoxCollider:
@@ -388,7 +387,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Ouvrir (E)
+  m_Text: Ouvrir (e)
 --- !u!1 &5573731060545292778
 GameObject:
   m_ObjectHideFlags: 0

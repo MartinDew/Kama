@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using KamaLib;
 using UnityEngine.UI;
-
+using System.Collections;
 
 [RequireComponent(typeof(IHealthComponent))]
 [RequireComponent(typeof(IAttackComponent))]
@@ -20,6 +20,7 @@ public class PlayerComponent : MonoBehaviour
     public ILevelComponent LevelComponent => player.LevelComponent;
     public AudioClip gameOverClip;
     public Text levelText;
+    public GameObject gameOverScreen;
     public AudioSource swordSound;
     private GameObject inventory;
     private bool isDead = false;
@@ -65,6 +66,9 @@ public class PlayerComponent : MonoBehaviour
             GetComponent<AudioSource>().clip = gameOverClip;
             GameObject.Find("GameManager").GetComponent<AudioSource>().Stop();
             GetComponent<AudioSource>().Play();
+            
+            StartCoroutine(ShowGameOverScreen());
+            ShowGameOverScreen();
         }
     }
 
@@ -81,7 +85,8 @@ public class PlayerComponent : MonoBehaviour
             if (hit.transform.gameObject.tag == "Ennemy")
                 hit.transform.gameObject.SendMessage("TakeDamage", AttackComponent.Attack());
 
-        swordSound.Play();
+        if (swordSound != null)
+            swordSound.Play();
     }
 
     public void SavePlayer() => SaveSystem.SavePlayer(this);
@@ -124,5 +129,13 @@ public class PlayerComponent : MonoBehaviour
                     }
                     else
                         Inventory.instance.Add(itemPickup.item);
+    }
+
+    private IEnumerator ShowGameOverScreen()
+    {
+        yield return new WaitForSeconds(2.5f);
+        gameOverScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
