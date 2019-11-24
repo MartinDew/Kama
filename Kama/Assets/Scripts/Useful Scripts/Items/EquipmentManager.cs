@@ -44,7 +44,6 @@ public class EquipmentManager : MonoBehaviour
 
     Inventory inventory;
 
-
     void Start()
     {
         inventory = Inventory.instance;
@@ -63,7 +62,6 @@ public class EquipmentManager : MonoBehaviour
             UnequipAll();
         }
     }
-
 
     public Equipment GetEquipment(EquipmentSlot slot)
     {
@@ -136,8 +134,6 @@ public class EquipmentManager : MonoBehaviour
                 onEquipmentChanged.Invoke(null, oldItem);
 
         }
-
-
     }
 
     void UnequipAll()

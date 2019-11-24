@@ -8,6 +8,7 @@ public class CheckButtonsPressed : MonoBehaviour
     GameObject inventory;
     GameObject save;
     GameObject load;
+    AudioSource gameSceneAudio;
     private void Start()
     {
         inventory = GameObject.Find("Inventory");
@@ -22,12 +23,14 @@ public class CheckButtonsPressed : MonoBehaviour
 
     private void Update()
     {
-        // Mis en commentaire le temps qu'on trouve un moyen de ne pas perdre notre sauvegarde quand on ouvre le menu de pause
-        /*if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown("escape"))
         {
             Cursor.visible = !Cursor.visible;
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene("PauseMenuScene");
-        }*/
+            GameObject.Find("Player").GetComponent<PlayerComponent>().SaveTemp();
+            SceneManager.LoadScene("PauseMenuScene", LoadSceneMode.Additive);
+            gameSceneAudio = GameObject.Find("GameManager").GetComponent<AudioSource>();
+            gameSceneAudio.mute = true;
+        }
     }
 }

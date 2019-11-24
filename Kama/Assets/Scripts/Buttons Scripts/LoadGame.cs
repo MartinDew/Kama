@@ -8,5 +8,6 @@ public class LoadGame : MonoBehaviour
     public void Load()
     {
         SceneManager.LoadScene("GameScene");
+        SaveSystem.LoadOnStart = true;
     }
 }

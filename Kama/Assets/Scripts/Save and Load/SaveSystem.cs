@@ -4,10 +4,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
+    public static string path = Application.persistentDataPath + "/player.txt";
+    public static bool LoadOnStart;
     public static void SavePlayer(PlayerComponent player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.txt";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData(player);
@@ -18,8 +19,6 @@ public static class SaveSystem
 
     public static PlayerData LoadPlayer()
     {
-        string path = Application.persistentDataPath + "/player.txt";
-
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

@@ -2835,6 +2835,7 @@ GameObject:
   - component: {fileID: 81113562}
   - component: {fileID: 81113561}
   - component: {fileID: 81113563}
+  - component: {fileID: 81113558}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2879,6 +2880,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e23540c1104c5c946a791a462cdc03dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &81113558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81113554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad97437c25de51545a7665f5c33aa21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &81113559
@@ -9580,7 +9593,7 @@ GameObject:
   - component: {fileID: 252009419}
   - component: {fileID: 252009418}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21667,7 +21680,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 223, y: -224.4}
+  m_AnchoredPosition: {x: 181, y: -224.4}
   m_SizeDelta: {x: 860.61, y: 152.28998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &433573769
@@ -56079,15 +56092,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 408216, guid: 28d084f7fa9613944b6391f4bac22b5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 654.7
+      value: 339.6
       objectReference: {fileID: 0}
     - target: {fileID: 408216, guid: 28d084f7fa9613944b6391f4bac22b5d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 276.77
+      value: 227.1
       objectReference: {fileID: 0}
     - target: {fileID: 408216, guid: 28d084f7fa9613944b6391f4bac22b5d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -306
+      value: 111.9
       objectReference: {fileID: 0}
     - target: {fileID: 408216, guid: 28d084f7fa9613944b6391f4bac22b5d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -86936,7 +86949,7 @@ GameObject:
   - component: {fileID: 1935558317}
   - component: {fileID: 1935558316}
   m_Layer: 5
-  m_Name: Canvas (2)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98984,7 +98997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 223, y: -276.2}
+  m_AnchoredPosition: {x: 130, y: -276.2}
   m_SizeDelta: {x: 860.61, y: 152.28998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2108042636

@@ -9,11 +9,13 @@ public class ReturnToPauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
+            GameObject.Find("Player").GetComponent<PlayerComponent>().SaveTemp();
             SceneManager.LoadScene("PauseMenuScene");
         }
     }
     public void GotoPause()
     {
+        GameObject.Find("Player").GetComponent<PlayerComponent>().SaveTemp();
         SceneManager.LoadScene("PauseMenuScene");
     }
 }

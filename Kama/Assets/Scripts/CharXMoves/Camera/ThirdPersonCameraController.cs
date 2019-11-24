@@ -57,12 +57,15 @@ public class ThirdPersonCameraController : MonoBehaviour
             }
             if (hit.collider.gameObject.tag != "Main Character" && hit.collider.gameObject.tag != "CharacterBones") 
             {
-
                 Obstruction = hit.transform;
-                Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-                if (Vector3.Distance(Obstruction.position, transform.position) >= 3f && Vector3.Distance(transform.position, target.position) >= 1.5f)
+
+                if (Obstruction.gameObject.GetComponent<MeshRenderer>() != null)
                 {
-                    transform.Translate(Vector3.forward * zoomSpeed * Time.deltaTime);
+                    Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+                    if (Vector3.Distance(Obstruction.position, transform.position) >= 3f && Vector3.Distance(transform.position, target.position) >= 1.5f)
+                    {
+                        transform.Translate(Vector3.forward * zoomSpeed * Time.deltaTime);
+                    }
                 }
             }
             else

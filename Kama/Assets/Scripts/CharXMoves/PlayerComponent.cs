@@ -2,6 +2,7 @@
 using KamaLib;
 using UnityEngine.UI;
 using System.Collections;
+using System.IO;
 
 [RequireComponent(typeof(IHealthComponent))]
 [RequireComponent(typeof(IAttackComponent))]
@@ -19,7 +20,6 @@ public class PlayerComponent : MonoBehaviour
     public float SkillConsumption = 5;
     public ILevelComponent LevelComponent => player.LevelComponent;
     public AudioClip gameOverClip;
-    public Text levelText;
     public GameObject gameOverScreen;
     public AudioSource swordSound;
     private GameObject inventory;
@@ -40,13 +40,8 @@ public class PlayerComponent : MonoBehaviour
 
     private void Start()
     {
-        //LevelComponent.OnLevelChanged += () =>
-        //{
-        //    levelText.text = "Niveau\n" + LevelComponent.CurrentLevel;
-        //    HealthComponent.Initialize(LevelComponent.CurrentHP, LevelComponent.CurrentHP);
-        //    SkillComponent.Initialize(LevelComponent.CurrentSP, LevelComponent.CurrentSP);
-        //    GetComponent<AudioSource>().Play();
-        //};
+        if (SaveSystem.LoadOnStart)
+            LoadPlayer();
     }
 
     private void Update()
@@ -103,11 +98,11 @@ public class PlayerComponent : MonoBehaviour
         HealthComponent.Initialize(data.MaxHP, data.HP);
         SkillComponent.Initialize(data.MaxSP, data.SP);
         LevelComponent.Initialize(data.level, data.maxLevel, data.EXP, data.maxEXP, data.ATK, data.HP, data.SP);
-        levelText.text = "Niveau\n" + LevelComponent.CurrentLevel;
-        SaveInventory(data);
+        GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + LevelComponent.CurrentLevel;
+        LoadInventory(data);
     }
 
-    private void SaveInventory(PlayerData data)
+    private void LoadInventory(PlayerData data)
     {
         bool savedPotions = false;
         GameObject collectibles = GameObject.Find("Interactables");
@@ -128,7 +123,62 @@ public class PlayerComponent : MonoBehaviour
                         }
                     }
                     else
+                    {
+                        GameObject temp = Instantiate(GameObject.Find(itemPickup.name));
                         Inventory.instance.Add(itemPickup.item);
+                        itemPickup.item.gameObject = temp;
+                        itemPickup.item.gameObject.GetComponentInChildren<Text>().enabled = false;
+                    }
+    }
+
+    public void SaveTemp() => SaveWhenPausing.TempSave(this);
+
+    public void LoadTemp()
+    {
+        if (File.Exists(SaveWhenPausing.path))
+        {
+            TempData data = SaveWhenPausing.TempLoad();
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            transform.position = position;
+
+            HealthComponent.Initialize(data.MaxHP, data.HP);
+            SkillComponent.Initialize(data.MaxSP, data.SP);
+            LevelComponent.Initialize(data.level, data.maxLevel, data.EXP, data.maxEXP, data.ATK, data.HP, data.SP);
+            GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + LevelComponent.CurrentLevel;
+            TempLoadInventory(data);
+        }
+    }
+
+    private void TempLoadInventory(TempData tempData)
+    {
+        bool savedPotions = false;
+        GameObject collectibles = GameObject.Find("Interactables");
+        ItemPickup[] itemPickups = collectibles.GetComponentsInChildren<ItemPickup>();
+
+        Inventory.instance.items.Clear();
+
+        for (int i = 0; i < tempData.itemIds.Length; i++)
+            foreach (ItemPickup itemPickup in itemPickups)
+                if (tempData.itemIds[i] == itemPickup.item.id)
+                    if (itemPickup.item.name == "Health Potion")
+                    {
+                        if (!savedPotions)
+                        {
+                            for (int j = 0; j < tempData.potionsCount; j++)
+                                Inventory.instance.Add(itemPickup.item);
+                            savedPotions = true;
+                        }
+                    }
+                    else
+                    {
+                        GameObject temp = Instantiate(GameObject.Find(itemPickup.name));
+                        Inventory.instance.Add(itemPickup.item);
+                        itemPickup.item.gameObject = temp;
+                        itemPickup.item.gameObject.GetComponentInChildren<Text>().enabled = false;
+                    }
     }
 
     private IEnumerator ShowGameOverScreen()
