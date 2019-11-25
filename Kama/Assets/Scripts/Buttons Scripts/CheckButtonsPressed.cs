@@ -28,9 +28,10 @@ public class CheckButtonsPressed : MonoBehaviour
             Cursor.visible = !Cursor.visible;
             Cursor.lockState = CursorLockMode.None;
             GameObject.Find("Player").GetComponent<PlayerComponent>().SaveTemp();
-            SceneManager.LoadScene("PauseMenuScene", LoadSceneMode.Additive);
             gameSceneAudio = GameObject.Find("GameManager").GetComponent<AudioSource>();
             gameSceneAudio.mute = true;
+            SaveWhenPausing.LoadOnUnpause = true;
+            SceneManager.LoadScene("PauseMenuScene", LoadSceneMode.Additive);
         }
     }
 }

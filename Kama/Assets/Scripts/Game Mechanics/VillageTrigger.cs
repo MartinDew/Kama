@@ -10,9 +10,11 @@ public class VillageTrigger : MonoBehaviour
     AudioSource audioSource;
     private AudioClip oldMusic;
     public AudioClip villageMusic;
+    private QuestManager questManager;
 
     private void Start()
     {
+        questManager = GameObject.Find("GameManager").GetComponent<QuestManager>();
         playerCollider = GameObject.FindGameObjectWithTag("Main Character").GetComponent<Collider>();
         audioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
         oldMusic = audioSource.clip;
@@ -21,10 +23,14 @@ public class VillageTrigger : MonoBehaviour
     {
         if (collider == playerCollider)
         {
-            // Changer la quête
-            if (questText.text == "- Trouver le village")
-                questText.text = "- Parler à Arthur";
-
+            if (questManager.GetActiveQuest() == 1)
+            {
+                // Changer la quête
+                //if (questText.text == "- Trouver le village")
+                //    questText.text = "- Parler à Arthur";
+                //questManager.nextQuest = true;
+                questManager.SetActiveQuest(questManager.GetActiveQuest() + 1);
+            }
             // Jouer la musique du village
             audioSource.clip = villageMusic;
             audioSource.volume = .5f;

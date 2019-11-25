@@ -236,7 +236,6 @@ GameObject:
   - component: {fileID: 292444894}
   - component: {fileID: 292444893}
   - component: {fileID: 292444892}
-  - component: {fileID: 292444895}
   m_Layer: 5
   m_Name: SaveGameButton
   m_TagString: Untagged
@@ -307,8 +306,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: d5454e129bf099b45a4389f868698c8e, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 355787645}
+        m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -358,18 +357,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292444890}
   m_CullTransparentMesh: 0
---- !u!114 &292444895
+--- !u!1 &355787644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355787646}
+  - component: {fileID: 355787645}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &355787645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292444890}
+  m_GameObject: {fileID: 355787644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5454e129bf099b45a4389f868698c8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d0aff01ff1b5a74b9a3d6b387e83f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &355787646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355787644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 622.87366, y: 220.74292, z: -113.840576}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526145346
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +570,6 @@ GameObject:
   - component: {fileID: 680903214}
   - component: {fileID: 680903213}
   - component: {fileID: 680903212}
-  - component: {fileID: 680903211}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -568,18 +597,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1, y: -107}
   m_SizeDelta: {x: -44.7, y: -220.8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &680903211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680903209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0307fd7fa6e9ea14c9826b3a08c0c5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &680903212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,7 +640,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 680903211}
+      - m_Target: {fileID: 355787645}
         m_MethodName: GotoMainMenu
         m_Mode: 1
         m_Arguments:
@@ -1291,7 +1308,6 @@ GameObject:
   - component: {fileID: 1997056070}
   - component: {fileID: 1997056069}
   - component: {fileID: 1997056068}
-  - component: {fileID: 1997056071}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -1362,7 +1378,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1997056071}
+      - m_Target: {fileID: 355787645}
         m_MethodName: GotoGame
         m_Mode: 1
         m_Arguments:
@@ -1413,15 +1429,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997056066}
   m_CullTransparentMesh: 0
---- !u!114 &1997056071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997056066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 224e52f524dd72146a0972c3990841be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

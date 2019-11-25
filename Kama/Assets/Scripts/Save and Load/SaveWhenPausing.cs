@@ -9,7 +9,6 @@ public static class SaveWhenPausing
     public static void TempSave(PlayerComponent player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        //string path = Application.persistentDataPath + "/temp.txt";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         TempData data = new TempData(player);
@@ -20,7 +19,6 @@ public static class SaveWhenPausing
 
     public static TempData TempLoad()
     {
-        //string path = Application.persistentDataPath + "/temp.txt";
 
         if (File.Exists(path))
         {

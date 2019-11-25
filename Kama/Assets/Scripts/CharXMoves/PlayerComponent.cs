@@ -13,7 +13,6 @@ public class PlayerComponent : MonoBehaviour
     // public GameObject target;
     private PlayerClass player;
     //private IHealthComponent targetHealth;
-
     public IHealthComponent HealthComponent => player.HealthComponent;
     public IAttackComponent AttackComponent => player.AttackComponent;
     public ISkillComponent SkillComponent => player.SkillComponent;
@@ -24,6 +23,7 @@ public class PlayerComponent : MonoBehaviour
     public AudioSource swordSound;
     private GameObject inventory;
     private bool isDead = false;
+    private int activeQuest;
 
     private void Awake()
     {
@@ -35,23 +35,24 @@ public class PlayerComponent : MonoBehaviour
             SkillComponent = GetComponent<ISkillComponent>(),
             LevelComponent = GetComponent<ILevelComponent>()
         };
-    // Checker levelup component
-    }
 
-    private void Start()
-    {
+        if (SaveWhenPausing.LoadOnUnpause)
+        {
+            LoadTemp();
+            SaveWhenPausing.LoadOnUnpause = false;
+        }
+
         if (SaveSystem.LoadOnStart)
+        {
             LoadPlayer();
+            SaveSystem.LoadOnStart = false;
+        }
     }
-
     private void Update()
     {
         if (Input.GetButtonDown("Fire1") && SkillComponent.Sp > SkillConsumption && !inventory.activeSelf)
             if (!isDead)
                 Attack();
-
-        if (Input.GetKeyDown(KeyCode.Backspace))
-            HealthComponent.TakeDamage(10);
 
         if (HealthComponent.HP <= 0 && !isDead)
         {
@@ -84,22 +85,33 @@ public class PlayerComponent : MonoBehaviour
             swordSound.Play();
     }
 
+    public int GetActiveQuest()
+    {
+        return activeQuest;
+    }
+
     public void SavePlayer() => SaveSystem.SavePlayer(this);
 
     public void LoadPlayer()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
+        if (File.Exists(SaveSystem.path))
+        {
+            PlayerData data = SaveSystem.LoadPlayer();
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            transform.position = position;
 
-        HealthComponent.Initialize(data.MaxHP, data.HP);
-        SkillComponent.Initialize(data.MaxSP, data.SP);
-        LevelComponent.Initialize(data.level, data.maxLevel, data.EXP, data.maxEXP, data.ATK, data.HP, data.SP);
-        GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + LevelComponent.CurrentLevel;
-        LoadInventory(data);
+            HealthComponent.Initialize(data.MaxHP, data.HP);
+            SkillComponent.Initialize(data.MaxSP, data.SP);
+            LevelComponent.Initialize(data.level, data.maxLevel, data.EXP, data.maxEXP, data.ATK, data.HP, data.SP);
+            GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + LevelComponent.CurrentLevel;
+            LoadInventory(data);
+            activeQuest = data.activeQuest;
+            GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
+            Debug.Log("save " + activeQuest);
+        }
     }
 
     private void LoadInventory(PlayerData data)
@@ -149,7 +161,10 @@ public class PlayerComponent : MonoBehaviour
             LevelComponent.Initialize(data.level, data.maxLevel, data.EXP, data.maxEXP, data.ATK, data.HP, data.SP);
             GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + LevelComponent.CurrentLevel;
             TempLoadInventory(data);
+            activeQuest = data.activeQuest;
+            GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
         }
+        Debug.Log(activeQuest);
     }
 
     private void TempLoadInventory(TempData tempData)

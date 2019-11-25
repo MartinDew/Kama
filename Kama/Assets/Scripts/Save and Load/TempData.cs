@@ -19,6 +19,7 @@ public class TempData
     public int[] itemIds;
     public int potionsCount;
 
+    public int activeQuest;
     public TempData(PlayerComponent player)
     {
         // Position
@@ -53,5 +54,8 @@ public class TempData
             if (item.name == "Health Potion")
                 potionsCount++;
         }
+
+        // Quest
+        activeQuest = GameObject.Find("GameManager").GetComponent<QuestManager>().GetActiveQuest();
     }
 }

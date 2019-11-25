@@ -23,8 +23,10 @@ public class EnnemyComponent : MonoBehaviour
     public GameObject winScreen;
     public AudioSource swordSound;
     AudioSource audioSource;
+    private QuestManager questManager;
     void Awake()
     {
+        questManager = GameObject.Find("GameManager").GetComponent<QuestManager>();
         level = 2;
         target = GameObject.FindGameObjectWithTag("Main Character").GetComponent<PlayerComponent>();
         lea = GameObject.Find("NPC Léa");
@@ -57,21 +59,26 @@ public class EnnemyComponent : MonoBehaviour
             target.LevelComponent.UpdateEXP(level * LevelClass.enemyEXP);
             Debug.Log($"Player has {target.LevelComponent.CurrentEXP} EXP!");
 
-            if (questText.GetComponent<Text>().text == "- Éliminer 5 goblins")
-                goblinsKilled++;
-
+            if (questManager.GetActiveQuest() == 3)
+            {
+                questManager.goblinsKilled++;
+                if (questManager.goblinsKilled == 5)
+                    questManager.SetActiveQuest(questManager.GetActiveQuest() + 1);
+            }
+            //if (questText.GetComponent<Text>().text == "- Éliminer 5 goblins")
+            //    goblinsKilled++;
             /// À la place de gérer ça sur un ennemi indépendant fait toi un quest manager que tu donnera au game manager pis qui gère toutes tes quêtes. 
             /// Dans ce cas-ci il pourrait incrémenter les goblins morts.
-            if (goblinsKilled == 5 && !questHasBeenGiven && questText.GetComponent<Text>().text == "- Éliminer 5 goblins")
-            {
-                questText.GetComponent<Text>().text = "- Aller voir Léa";
-                lea.GetComponent<DialogueTrigger>().dialogue.sentences = new string[4];
-                lea.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Bravo! Tu as réussi à éliminer assez de goblins!";
-                lea.GetComponent<DialogueTrigger>().dialogue.sentences[1] = "Cependant, il te reste une terrible épreuve à traverser.";
-                lea.GetComponent<DialogueTrigger>().dialogue.sentences[2] = "Tu dois entrer dans le sombre donjon et vaincre Kragz,\n le chef des goblins.";
-                lea.GetComponent<DialogueTrigger>().dialogue.sentences[3] = "Voici la clé, tu en auras besoin pour ouvrir la porte.\n Bonne chance!";
-                questHasBeenGiven = true;
-            }
+            //if (goblinsKilled == 5 && !questHasBeenGiven && questText.GetComponent<Text>().text == "- Éliminer 5 goblins")
+            //{
+            //    questText.GetComponent<Text>().text = "- Aller voir Léa";
+            //    lea.GetComponent<DialogueTrigger>().dialogue.sentences = new string[4];
+            //    lea.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Bravo! Tu as réussi à éliminer assez de goblins!";
+            //    lea.GetComponent<DialogueTrigger>().dialogue.sentences[1] = "Cependant, il te reste une terrible épreuve à traverser.";
+            //    lea.GetComponent<DialogueTrigger>().dialogue.sentences[2] = "Tu dois entrer dans le sombre donjon et vaincre Kragz,\n le chef des goblins.";
+            //    lea.GetComponent<DialogueTrigger>().dialogue.sentences[3] = "Voici la clé, tu en auras besoin pour ouvrir la porte.\n Bonne chance!";
+            //    questHasBeenGiven = true;
+            //}
 
             if (isBoss)
             {

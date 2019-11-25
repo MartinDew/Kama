@@ -9,11 +9,17 @@ public class TreasureChest : Interactable
 	public Item[] items;
     bool isOpen = false;
     Canvas interactCanvas;
+    Image msgBox;
+    Text msg;
 
 	private void Awake() 
     {
 		animator = GetComponent<Animator>();
-	}
+        msgBox = GameObject.Find("Item Obtained Box").GetComponent<Image>();
+        msg = GameObject.Find("Item Obtained Message").GetComponent<Text>();
+        msgBox.enabled = false;
+        msg.enabled = false;
+    }
 
     private void Start()
     {
@@ -35,15 +41,18 @@ public class TreasureChest : Interactable
     {
         isOpen = true;
         Debug.Log("Chest opened");
-        /*GameObject.Find("Item Obtained Message").GetComponent<Text>().enabled = true;
-        GameObject.Find("Item Obtained Box").GetComponent<Image>().enabled = true;
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-
-        }
-
-        GameObject.Find("Item Obtained Message").GetComponent<Text>().text = "Vous avez obtenu " + items[0].name;*/
+        StartCoroutine(ShowAndHide(msg, msgBox));
         foreach (Item i in items)
 			Inventory.instance.Add(i);
 	}
+
+    IEnumerator ShowAndHide(Text msg, Image msgBox)
+    {
+        yield return new WaitForSeconds(1.5f);
+        msg.enabled = true;
+        msgBox.enabled = true;
+        yield return new WaitForSeconds(3.5f);
+        msg.enabled = false;
+        msgBox.enabled = false;
+    }
 }

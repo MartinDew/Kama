@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [System.Serializable]
 public class PlayerData 
@@ -17,6 +18,9 @@ public class PlayerData
 
     public int[] itemIds;
     public int potionsCount;
+
+    public int activeQuest;
+    public int[] chestsIds;
 
     public PlayerData(PlayerComponent player)
     {
@@ -52,5 +56,8 @@ public class PlayerData
             if (item.name == "Health Potion")
                 potionsCount++;
         }
+
+        // Quest
+        activeQuest = GameObject.Find("GameManager").GetComponent<QuestManager>().GetActiveQuest();
     }
 }

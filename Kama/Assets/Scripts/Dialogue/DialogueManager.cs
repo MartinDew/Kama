@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
     public Text questText;
     public Image dialogueBox;
+    private QuestManager questManager;
     //public Animator animator;
     private float distance;
     private Queue<string> sentences;
@@ -18,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     private GameObject entrance;
     private void Start()
     {
+        questManager = GameObject.Find("GameManager").GetComponent<QuestManager>();
         sentences = new Queue<string>();
         dialogueBox.gameObject.SetActive(false);
         arthur = GameObject.Find("NPC Arthur");
@@ -32,7 +34,6 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        //animator.SetBool("IsOpen", true);
         nameText.text = dialogue.npcName;
         sentences.Clear();
 
@@ -47,13 +48,18 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
-            if (nameText.text == "Arthur" && questText.text == "- Parler à Arthur")
+            if (questManager.GetActiveQuest() == 2 && nameText.text == "Arthur")
+                questManager.SetActiveQuest(questManager.GetActiveQuest() + 1);
+            else if (questManager.GetActiveQuest() == 4 && nameText.text == "Léa")
+                questManager.SetActiveQuest(questManager.GetActiveQuest() + 1);
+
+            /*if (nameText.text == "Arthur" && questText.text == "- Parler à Arthur")
             {
                 questText.text = "- Éliminer 5 goblins";
                 arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1]; 
                 arthur.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Complète ma quête ou va voir Léa si c'est déjà fait.";
-            }
-
+            }*/
+            /*
             if (nameText.text == "Léa" && questText.text == "- Aller voir Léa")
             {
                 entrance.GetComponent<DoorOpen>().enabled = true;
@@ -63,7 +69,7 @@ public class DialogueManager : MonoBehaviour
                 arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
                 lea.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Tu dois aller vaincre Kragz au donjon!";
                 arthur.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Tu dois aller vaincre Kragz au donjon!";
-            }
+            }*/
 
             EndDialogue();
             return;
@@ -89,9 +95,5 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void EndDialogue()
-    {
-        //animator.SetBool("IsOpen", false);
-        dialogueBox.gameObject.SetActive(false);
-    }
+    void EndDialogue() => dialogueBox.gameObject.SetActive(false);
 }

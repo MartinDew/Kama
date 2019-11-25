@@ -11,9 +11,11 @@ public class DungeonTrigger : MonoBehaviour
     public Text questText;
     private Collider playerCollider;
     new private Light light;
+    private QuestManager questManager;
 
     private void Start()
     {
+        questManager = GameObject.Find("GameManager").GetComponent<QuestManager>();
         playerCollider = GameObject.FindGameObjectWithTag("Main Character").GetComponent<Collider>();
         audioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
         oldMusic = audioSource.clip;
@@ -27,8 +29,11 @@ public class DungeonTrigger : MonoBehaviour
             light.intensity = 0;
 
             // Changer la quête du donjon
-            if (questText.text == "- Entrer dans le donjon")
-                questText.text = "- Trouver et vaincre Kragz";
+            //if (questText.text == "- Entrer dans le donjon")
+            //    questText.text = "- Trouver et vaincre Kragz";
+
+            if (questManager.GetActiveQuest() == 5)
+                questManager.SetActiveQuest(questManager.GetActiveQuest() + 1);
 
             // Jouer la musique du donjon
             audioSource.clip = dungeonMusic;
