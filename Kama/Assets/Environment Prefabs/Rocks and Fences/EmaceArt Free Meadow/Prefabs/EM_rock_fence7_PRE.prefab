@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4838733042613468}
   - component: {fileID: 33421525766057088}
   - component: {fileID: 23552095188932620}
+  - component: {fileID: 3749862986765591902}
   m_Layer: 0
   m_Name: EM_rock_fence7
   m_TagString: Untagged
@@ -78,6 +79,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!208 &3749862986765591902
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068223908320550}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 8.512, y: 2.121, z: 1.1520001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -4.7570004, y: 1.6790001, z: 0.29500002}
+  m_TimeToStationary: 0.5
 --- !u!1 &1708696226816542
 GameObject:
   m_ObjectHideFlags: 0

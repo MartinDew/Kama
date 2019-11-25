@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33464483487464712}
   - component: {fileID: 23784135097911738}
   - component: {fileID: 6277253234676090909}
+  - component: {fileID: 9106233218074126905}
   m_Layer: 0
   m_Name: Pillar_Stone
   m_TagString: Wall
@@ -92,3 +93,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.38535616, y: 1.911628, z: 0.38407728}
   m_Center: {x: -0.00084185594, y: 0.9569614, z: 0.00084078306}
+--- !u!208 &9106233218074126905
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048753352154994}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.193, y: 0.95600003, z: 0.192}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.001, y: 0.957, z: 0.001}
+  m_TimeToStationary: 0.5
