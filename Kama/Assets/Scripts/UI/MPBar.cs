@@ -5,15 +5,15 @@ using KamaLib;
 [RequireComponent(typeof(Image))]
 public class MPBar : MonoBehaviour
 {
-    public GameObject target;
+    private GameObject target;
     private Image bar;
     private ISkillComponent playerSkill;
     private int MPValueInt;
     [SerializeField] private Text MPValue;
     private void Awake()
     {
-        if (target == null)
-            target = GameObject.FindGameObjectWithTag("Main Character");
+        MPValue = GameObject.Find("MP Value").GetComponent<Text>();
+        target = GameObject.FindGameObjectWithTag("Main Character");
         playerSkill = target.GetComponent<ISkillComponent>();
         bar = GetComponent<Image>();
     }

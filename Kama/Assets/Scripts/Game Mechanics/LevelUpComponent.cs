@@ -25,31 +25,18 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
     public bool IsMaxLevel => levelClass.IsMaxLevel;
     public float CurrentHP => levelClass.CurrentHP;
     public float CurrentSP => levelClass.CurrentSP;
-
-    public void Initialize(float level, float maxlevel, float exp, float maxExp, float atk, float hp, float sp) => levelClass = new LevelClass(level, maxlevel, exp, maxExp, atk, hp, sp);
+    public void Initialize(float level, float maxlevel, float exp, float maxExp, float atk, float hp, float sp) => 
+        levelClass = new LevelClass(level, maxlevel, exp, maxExp, atk, hp, sp);
     public void InitializeStats(float hp, float sp, float atk) => levelClass = new LevelClass(hp, sp, atk);
     public void LevelUp() =>  levelClass.LevelUp();
     public void UpdateEXP(float exp) => levelClass.UpdateEXP(exp);
+    public void UpdateATK(float atk) => levelClass.UpdateATK(atk);
 
-    private void Awake()
-    {
-
-
-    }
-
-    /// <summary>
-    /// Lors du awake ou du start, qu'on utilise ici car on veut que tout le reste soit initialisé,
-    /// Tu es supposé initialiser ton levelClass, donc appeler le constructeur. Ce que tu faisais, c'était d'appeler un constructeur 
-    /// puis ensuite tu rechangeait toute les variables sans rappeler le constructeur et ce dans le player component. Ce que tu aurait du faire 
-    /// c'est ce qui suit. Déclare toi un autre constructeur qui appel initializeStats dans ta classe puis passe les variables en paramètres.
-    /// En résumé, le problème était bien ton code.
-    /// </summary>
     private void Start()
     {
         player = PlayerManager.instance.player;
 
-        levelClass = new LevelClass(GetComponent<IHealthComponent>().MaxHP, GetComponent<ISkillComponent>().MaxSp, GetComponent<IAttackComponent>().baseDamage); //Simple
-
+        levelClass = new LevelClass(GetComponent<IHealthComponent>().MaxHP, GetComponent<ISkillComponent>().MaxSp, GetComponent<IAttackComponent>().baseDamage);
         OnLevelChanged += () =>
         {
             GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + CurrentLevel;
@@ -57,10 +44,5 @@ public class LevelUpComponent : MonoBehaviour, ILevelComponent
             GetComponent<ISkillComponent>().Initialize(CurrentSP, CurrentSP);
             GetComponent<AudioSource>().Play();
         };
-    }
-    public void UpdateATK(float atk) => levelClass.UpdateATK(atk);
-    public void Initialize(float level, float maxlevel)
-    {
-        throw new NotImplementedException();
     }
 }

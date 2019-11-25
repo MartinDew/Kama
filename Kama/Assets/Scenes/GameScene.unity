@@ -2810,7 +2810,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Niveau \n1"
+  m_Text: "Niveau \nx"
 --- !u!222 &79731814
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2836,6 +2836,7 @@ GameObject:
   - component: {fileID: 81113561}
   - component: {fileID: 81113563}
   - component: {fileID: 81113564}
+  - component: {fileID: 81113558}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2880,6 +2881,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e23540c1104c5c946a791a462cdc03dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &81113558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81113554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6298edbf6eb494aacb240b159a95c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &81113559
@@ -8528,7 +8541,6 @@ GameObject:
   - component: {fileID: 226876839}
   - component: {fileID: 226876838}
   - component: {fileID: 226876837}
-  - component: {fileID: 226876836}
   m_Layer: 5
   m_Name: ReturnButton
   m_TagString: Untagged
@@ -8556,18 +8568,6 @@ RectTransform:
   m_AnchoredPosition: {x: -3, y: -18.40001}
   m_SizeDelta: {x: 1124.9, y: 106.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &226876836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226876834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0307fd7fa6e9ea14c9826b3a08c0c5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &226876837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8611,7 +8611,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 226876836}
+      - m_Target: {fileID: 81113558}
         m_MethodName: GotoMainMenu
         m_Mode: 1
         m_Arguments:
@@ -16382,7 +16382,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '- Trouver le village'
+  m_Text: Quest text
 --- !u!222 &419529807
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23308,7 +23308,6 @@ GameObject:
   - component: {fileID: 487041113}
   - component: {fileID: 487041112}
   - component: {fileID: 487041111}
-  - component: {fileID: 487041110}
   m_Layer: 5
   m_Name: ReturnButton
   m_TagString: Untagged
@@ -23336,18 +23335,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.1000677, y: 69}
   m_SizeDelta: {x: 1124.9, y: 106.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &487041110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487041108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0307fd7fa6e9ea14c9826b3a08c0c5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &487041111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23391,7 +23378,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 487041110}
+      - m_Target: {fileID: 81113558}
         m_MethodName: GotoMainMenu
         m_Mode: 1
         m_Arguments:
@@ -31031,7 +31018,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b1ddb3b957d4a428635508095346e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 646095215}
   XPValue: {fileID: 494053131}
 --- !u!114 &679091012
 MonoBehaviour:
@@ -31543,7 +31529,6 @@ GameObject:
   - component: {fileID: 707969906}
   - component: {fileID: 707969905}
   - component: {fileID: 707969904}
-  - component: {fileID: 707969903}
   m_Layer: 5
   m_Name: LoadButton
   m_TagString: Untagged
@@ -31571,18 +31556,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.0998963, y: -68}
   m_SizeDelta: {x: 1124.9, y: 106.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &707969903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707969901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6bd2fbc0185c0c44a4324bcb72a0e92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &707969904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31626,8 +31599,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 707969903}
-        m_MethodName: Launch
+      - m_Target: {fileID: 81113558}
+        m_MethodName: Load
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32277,7 +32250,7 @@ RectTransform:
   m_GameObject: {fileID: 726575887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.593291, y: 0.92, z: 0.92}
   m_Children:
   - {fileID: 821504462}
   m_Father: {fileID: 561674161}
@@ -36000,7 +35973,7 @@ RectTransform:
   m_GameObject: {fileID: 821504461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45902693, y: 0.45902693, z: 0.45902693}
+  m_LocalScale: {x: 0.5498617, y: 0.34700784, z: 0.34700784}
   m_Children: []
   m_Father: {fileID: 726575888}
   m_RootOrder: 0
@@ -39872,7 +39845,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d867f82d19bea4482963e9ebb46c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 646095215}
   MPValue: {fileID: 736730594}
 --- !u!114 &939690089
 MonoBehaviour:

@@ -5,15 +5,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class EXPBar : MonoBehaviour
 {
-    public GameObject target;
+    private GameObject target;
     private Image bar;
     private ILevelComponent playerEXP;
     private int XPValueInt;
     [SerializeField] private Text XPValue;
     private void Awake()
     {
-        if (target == null )
-            target = GameObject.FindGameObjectWithTag("Main Character");
+        XPValue = GameObject.Find("XP Value").GetComponent<Text>();
+        target = GameObject.FindGameObjectWithTag("Main Character");
         playerEXP = target.GetComponent<ILevelComponent>();
         bar = GetComponent<Image>();
     }

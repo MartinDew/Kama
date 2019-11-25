@@ -5,27 +5,28 @@ using UnityEngine.SceneManagement;
 public class PauseMenuComponent : MonoBehaviour
 {
     AudioSource gameSceneAudio;
-    void Awake() => SaveSystem.LoadOnStart = false;
+    private void Start()
+    {
+        SaveWhenPausing.LoadOnUnpause = true;
+    }
 
-    public void Update()
+    private void Update()
     {
         if (Input.GetKeyDown("escape"))
         {
+            SaveWhenPausing.LoadOnUnpause = true;
             SceneManager.LoadScene("GameScene");
             gameSceneAudio = GameObject.Find("GameManager").GetComponent<AudioSource>();
             gameSceneAudio.mute = false;
-            PlayerComponent player = GameObject.Find("Player").GetComponent<PlayerComponent>();
-            player.LoadTemp();
         }
     }
 
     public void GotoGame()
     {
+        SaveWhenPausing.LoadOnUnpause = true;
         SceneManager.LoadScene("GameScene");
         gameSceneAudio = GameObject.Find("GameManager").GetComponent<AudioSource>();
         gameSceneAudio.mute = false;
-        PlayerComponent player = GameObject.Find("Player").GetComponent<PlayerComponent>();
-        player.LoadTemp();
     }
     public void SaveGame()
     {
@@ -33,8 +34,5 @@ public class PauseMenuComponent : MonoBehaviour
         player.SavePlayer();
     }
 
-    public void GotoMainMenu()
-    {
-        SceneManager.LoadScene("MainMenuScene");
-    }
+    public void GotoMainMenu() => SceneManager.LoadScene("MainMenuScene");
 }

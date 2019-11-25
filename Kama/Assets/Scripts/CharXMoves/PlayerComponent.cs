@@ -28,6 +28,8 @@ public class PlayerComponent : MonoBehaviour
     private void Awake()
     {
         inventory = GameObject.Find("Inventory");
+        GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + LevelClass.defaultLevel;
+
         player = new PlayerClass()
         {
             AttackComponent = GetComponent<IAttackComponent>(),
@@ -35,17 +37,19 @@ public class PlayerComponent : MonoBehaviour
             SkillComponent = GetComponent<ISkillComponent>(),
             LevelComponent = GetComponent<ILevelComponent>()
         };
+    }
 
-        if (SaveWhenPausing.LoadOnUnpause)
-        {
-            LoadTemp();
-            SaveWhenPausing.LoadOnUnpause = false;
-        }
-
-        if (SaveSystem.LoadOnStart)
+    private void Start()
+    {
+        if (SaveSystem.LoadOnStart && !SaveWhenPausing.LoadOnUnpause)
         {
             LoadPlayer();
             SaveSystem.LoadOnStart = false;
+        }
+        else if (!SaveSystem.LoadOnStart && SaveWhenPausing.LoadOnUnpause)
+        {
+            LoadTemp();
+            SaveWhenPausing.LoadOnUnpause = false;
         }
     }
     private void Update()
@@ -106,11 +110,10 @@ public class PlayerComponent : MonoBehaviour
             HealthComponent.Initialize(data.MaxHP, data.HP);
             SkillComponent.Initialize(data.MaxSP, data.SP);
             LevelComponent.Initialize(data.level, data.maxLevel, data.EXP, data.maxEXP, data.ATK, data.HP, data.SP);
-            GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + LevelComponent.CurrentLevel;
+            GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + data.level;
             LoadInventory(data);
             activeQuest = data.activeQuest;
             GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
-            Debug.Log("save " + activeQuest);
         }
     }
 

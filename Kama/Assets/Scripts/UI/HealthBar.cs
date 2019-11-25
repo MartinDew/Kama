@@ -5,13 +5,14 @@ using KamaLib;
 [RequireComponent(typeof(Image))]
 public class HealthBar : MonoBehaviour
 {
-    GameObject target;
+    private GameObject target;
     private Image bar;
-    IHealthComponent playerHealth;
+    private IHealthComponent playerHealth;
     private int healthValueInt;
     [SerializeField] private Text healthValue;
     private void Awake()
     {
+        healthValue = GameObject.Find("Health Value").GetComponent<Text>();
         target = GameObject.FindGameObjectWithTag("Main Character");
         playerHealth = target.GetComponent<IHealthComponent>();
         bar = GetComponent<Image>();        
