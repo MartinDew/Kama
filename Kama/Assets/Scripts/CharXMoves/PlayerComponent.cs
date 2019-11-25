@@ -37,9 +37,23 @@ public class PlayerComponent : MonoBehaviour
             SkillComponent = GetComponent<ISkillComponent>(),
             LevelComponent = GetComponent<ILevelComponent>()
         };
+
+        if (SaveSystem.LoadOnStart && !SaveWhenPausing.LoadOnUnpause)
+        {
+            LoadPlayer();
+            SaveSystem.LoadOnStart = false;
+        }
+        else if (!SaveSystem.LoadOnStart && SaveWhenPausing.LoadOnUnpause)
+        {
+            LoadTemp();
+            SaveWhenPausing.LoadOnUnpause = false;
+        }
+
+        activeQuest = 6;
+        GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
     }
 
-    private void Start()
+    /*private void Start()
     {
         if (SaveSystem.LoadOnStart && !SaveWhenPausing.LoadOnUnpause)
         {
@@ -51,7 +65,8 @@ public class PlayerComponent : MonoBehaviour
             LoadTemp();
             SaveWhenPausing.LoadOnUnpause = false;
         }
-    }
+    }*/
+
     private void Update()
     {
         if (Input.GetButtonDown("Fire1") && SkillComponent.Sp > SkillConsumption && !inventory.activeSelf)
@@ -92,6 +107,14 @@ public class PlayerComponent : MonoBehaviour
     public int GetActiveQuest()
     {
         return activeQuest;
+    }
+
+    public void SavePosition()
+    {
+        float[] position = new float[3];
+        position[0] = transform.position.x;
+        position[1] = transform.position.y;
+        position[2] = transform.position.z;
     }
 
     public void SavePlayer() => SaveSystem.SavePlayer(this);
