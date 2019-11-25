@@ -24,6 +24,7 @@ public class PlayerComponent : MonoBehaviour
     private GameObject inventory;
     private bool isDead = false;
     private int activeQuest;
+    public static float[] currentPos;
 
     private void Awake()
     {
@@ -48,24 +49,12 @@ public class PlayerComponent : MonoBehaviour
             LoadTemp();
             SaveWhenPausing.LoadOnUnpause = false;
         }
-
-        activeQuest = 6;
+        activeQuest = 4;
         GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
-    }
 
-    /*private void Start()
-    {
-        if (SaveSystem.LoadOnStart && !SaveWhenPausing.LoadOnUnpause)
-        {
-            LoadPlayer();
-            SaveSystem.LoadOnStart = false;
-        }
-        else if (!SaveSystem.LoadOnStart && SaveWhenPausing.LoadOnUnpause)
-        {
-            LoadTemp();
-            SaveWhenPausing.LoadOnUnpause = false;
-        }
-    }*/
+        if (activeQuest == 6)
+            GameObject.Find("GameManager").GetComponent<QuestManager>().entrance.SetActive(false);
+    }
 
     private void Update()
     {
@@ -108,16 +97,7 @@ public class PlayerComponent : MonoBehaviour
     {
         return activeQuest;
     }
-
-    public void SavePosition()
-    {
-        float[] position = new float[3];
-        position[0] = transform.position.x;
-        position[1] = transform.position.y;
-        position[2] = transform.position.z;
-    }
-
-    public void SavePlayer() => SaveSystem.SavePlayer(this);
+    public void SavePlayer() =>  SaveSystem.SavePlayer(this);
 
     public void LoadPlayer()
     {
@@ -189,8 +169,11 @@ public class PlayerComponent : MonoBehaviour
             TempLoadInventory(data);
             activeQuest = data.activeQuest;
             GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
+
+            // ? 
+            //GameObject.Find("GameManager").GetComponent<PlayerManager>().equippedWeapon = GameObject.Find(data.equippedWeapon);
+            //Debug.Log(GameObject.Find(data.equippedWeapon).name);  
         }
-        Debug.Log(activeQuest);
     }
 
     private void TempLoadInventory(TempData tempData)

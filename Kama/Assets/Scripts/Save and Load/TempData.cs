@@ -20,6 +20,7 @@ public class TempData
     public int potionsCount;
 
     public int activeQuest;
+    public string equippedWeapon;
     public TempData(PlayerComponent player)
     {
         // Position
@@ -57,5 +58,11 @@ public class TempData
 
         // Quest
         activeQuest = GameObject.Find("GameManager").GetComponent<QuestManager>().GetActiveQuest();
+
+        // Equipped weapon
+        if (GameObject.Find("GameManager").GetComponent<PlayerManager>().equippedWeapon != null)
+            equippedWeapon = GameObject.Find("GameManager").GetComponent<PlayerManager>().equippedWeapon.name;
+        else
+            equippedWeapon = null;
     }
 }

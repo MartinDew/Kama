@@ -12,6 +12,8 @@ public static class SaveSystem
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData(player);
+        TempData tempData = SaveWhenPausing.TempLoad();
+        data.position = tempData.position;
 
         formatter.Serialize(stream, data);
         stream.Close();

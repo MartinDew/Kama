@@ -10,7 +10,6 @@ public class QuestManager : MonoBehaviour
 
     GameObject Arthur;
     GameObject Lea;
-    GameObject entrance;
     PlayerComponent player;
     Text questText;
     bool dungeonDoorOpen = false;
@@ -21,6 +20,7 @@ public class QuestManager : MonoBehaviour
     string quest4 = "- Aller voir Léa";
     string quest5 = "- Trouver le donjon";
     string quest6 = "- Vaincre Kragz!";
+    public GameObject entrance;
 
     void Awake()
     {
@@ -93,6 +93,9 @@ public class QuestManager : MonoBehaviour
             questText.text = quest4;
             dungeonDoorOpen = false;
 
+            Arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
+            Arthur.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Complète ma quête ou va voir Léa si c'est déjà fait.";
+
             Lea.GetComponent<DialogueTrigger>().dialogue.sentences = new string[4];
             Lea.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Bravo! Tu as réussi à éliminer assez de goblins!";
             Lea.GetComponent<DialogueTrigger>().dialogue.sentences[1] = "Cependant, il te reste une terrible épreuve à traverser.";
@@ -118,6 +121,12 @@ public class QuestManager : MonoBehaviour
             activeQuest = id;
             questText.text = quest6;
             dungeonDoorOpen = true;
+
+            Arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
+            Arthur.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Merci pour ton aide. Bonne chance au donjon.";
+
+            Lea.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
+            Lea.GetComponent<DialogueTrigger>().dialogue.sentences[0] = "Tu dois aller vaincre Kragz au donjon!";
         }
     }
 }

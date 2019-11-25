@@ -22,6 +22,8 @@ public class PlayerData
     public int activeQuest;
     public int[] chestsIds;
 
+    public string equippedWeapon;
+
     public PlayerData(PlayerComponent player)
     {
         // Position
@@ -59,5 +61,11 @@ public class PlayerData
 
         // Quest
         activeQuest = GameObject.Find("GameManager").GetComponent<QuestManager>().GetActiveQuest();
+
+        // Equipped weapon
+        if (GameObject.Find("GameManager").GetComponent<PlayerManager>().equippedWeapon != null)
+            equippedWeapon = GameObject.Find("GameManager").GetComponent<PlayerManager>().equippedWeapon.name;
+        else
+            equippedWeapon = null;
     }
 }
