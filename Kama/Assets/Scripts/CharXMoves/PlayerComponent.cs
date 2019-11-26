@@ -103,9 +103,7 @@ public class PlayerComponent : MonoBehaviour
         {
             PlayerData data = SaveSystem.LoadPlayer();
             Vector3 position;
-            position.x = data.position[0];
-            position.y = data.position[1];
-            position.z = data.position[2];
+            position = new Vector3(data.position[0],data.position[1],data.position[2]);
 
             transform.position = position;
 
