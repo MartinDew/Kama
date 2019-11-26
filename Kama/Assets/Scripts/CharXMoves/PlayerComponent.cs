@@ -10,27 +10,33 @@ using System.IO;
 [RequireComponent(typeof(ILevelComponent))]
 public class PlayerComponent : MonoBehaviour
 {
-    // public GameObject target;
     private PlayerClass player;
-    //private IHealthComponent targetHealth;
     public IHealthComponent HealthComponent => player.HealthComponent;
     public IAttackComponent AttackComponent => player.AttackComponent;
     public ISkillComponent SkillComponent => player.SkillComponent;
-    public float SkillConsumption = 5;
+    public float SkillConsumption;
     public ILevelComponent LevelComponent => player.LevelComponent;
     public AudioClip gameOverClip;
-    public GameObject gameOverScreen;
     public AudioSource swordSound;
+    public GameObject gameOverScreen;
     private GameObject inventory;
+    private QuestManager questManager;
+    private Text levelText;
     private bool isDead = false;
     private int activeQuest;
-    public static float[] currentPos;
 
     private void Awake()
     {
         inventory = GameObject.Find("Inventory");
-        GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + LevelClass.defaultLevel;
+        questManager = GameObject.Find("GameManager").GetComponent<QuestManager>();
+        levelText = GameObject.Find("Level Value").GetComponent<Text>();
+        SkillConsumption = 5;
+        Time.timeScale = 1;
+    }
 
+    private void Start()
+    {
+        levelText.text = "Niveau\n" + LevelClass.defaultLevel;
         player = new PlayerClass()
         {
             AttackComponent = GetComponent<IAttackComponent>(),
@@ -39,23 +45,14 @@ public class PlayerComponent : MonoBehaviour
             LevelComponent = GetComponent<ILevelComponent>()
         };
 
-        if (SaveSystem.LoadOnStart && !SaveWhenPausing.LoadOnUnpause)
-        {
+        if (SaveSystem.LoadOnStart)
             LoadPlayer();
-            SaveSystem.LoadOnStart = false;
-        }
-        else if (!SaveSystem.LoadOnStart && SaveWhenPausing.LoadOnUnpause)
-        {
-            LoadTemp();
-            SaveWhenPausing.LoadOnUnpause = false;
-        }
-        activeQuest = 4;
-        GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
+
+        SaveSystem.LoadOnStart = false;
 
         if (activeQuest == 6)
             GameObject.Find("GameManager").GetComponent<QuestManager>().entrance.SetActive(false);
     }
-
     private void Update()
     {
         if (Input.GetButtonDown("Fire1") && SkillComponent.Sp > SkillConsumption && !inventory.activeSelf)
@@ -70,7 +67,7 @@ public class PlayerComponent : MonoBehaviour
             GetComponent<AudioSource>().clip = gameOverClip;
             GameObject.Find("GameManager").GetComponent<AudioSource>().Stop();
             GetComponent<AudioSource>().Play();
-            
+
             StartCoroutine(ShowGameOverScreen());
             ShowGameOverScreen();
         }
@@ -97,7 +94,8 @@ public class PlayerComponent : MonoBehaviour
     {
         return activeQuest;
     }
-    public void SavePlayer() =>  SaveSystem.SavePlayer(this);
+
+    public void SavePlayer() => SaveSystem.SavePlayer(this);
 
     public void LoadPlayer()
     {
@@ -108,6 +106,7 @@ public class PlayerComponent : MonoBehaviour
             position.x = data.position[0];
             position.y = data.position[1];
             position.z = data.position[2];
+
             transform.position = position;
 
             HealthComponent.Initialize(data.MaxHP, data.HP);
@@ -117,6 +116,11 @@ public class PlayerComponent : MonoBehaviour
             LoadInventory(data);
             activeQuest = data.activeQuest;
             GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
+            GameObject weapon = GameObject.Find(data.equippedWeapon);
+            weapon.GetComponent<ItemPickup>().item.gameObject = weapon;
+            weapon.GetComponent<ItemPickup>().item.Use();
+            if (weapon.GetComponentInChildren<Canvas>() != null)
+                weapon.GetComponentInChildren<Canvas>().enabled = false;
         }
     }
 
@@ -136,62 +140,6 @@ public class PlayerComponent : MonoBehaviour
                         if (!savedPotions)
                         {
                             for (int j = 0; j < data.potionsCount; j++)
-                                Inventory.instance.Add(itemPickup.item);
-                            savedPotions = true;
-                        }
-                    }
-                    else
-                    {
-                        GameObject temp = Instantiate(GameObject.Find(itemPickup.name));
-                        Inventory.instance.Add(itemPickup.item);
-                        itemPickup.item.gameObject = temp;
-                        itemPickup.item.gameObject.GetComponentInChildren<Text>().enabled = false;
-                    }
-    }
-
-    public void SaveTemp() => SaveWhenPausing.TempSave(this);
-
-    public void LoadTemp()
-    {
-        if (File.Exists(SaveWhenPausing.path))
-        {
-            TempData data = SaveWhenPausing.TempLoad();
-            Vector3 position;
-            position.x = data.position[0];
-            position.y = data.position[1];
-            position.z = data.position[2];
-            transform.position = position;
-
-            HealthComponent.Initialize(data.MaxHP, data.HP);
-            SkillComponent.Initialize(data.MaxSP, data.SP);
-            LevelComponent.Initialize(data.level, data.maxLevel, data.EXP, data.maxEXP, data.ATK, data.HP, data.SP);
-            GameObject.Find("Level Value").GetComponent<Text>().text = "Niveau\n" + LevelComponent.CurrentLevel;
-            TempLoadInventory(data);
-            activeQuest = data.activeQuest;
-            GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
-
-            // ? 
-            //GameObject.Find("GameManager").GetComponent<PlayerManager>().equippedWeapon = GameObject.Find(data.equippedWeapon);
-            //Debug.Log(GameObject.Find(data.equippedWeapon).name);  
-        }
-    }
-
-    private void TempLoadInventory(TempData tempData)
-    {
-        bool savedPotions = false;
-        GameObject collectibles = GameObject.Find("Interactables");
-        ItemPickup[] itemPickups = collectibles.GetComponentsInChildren<ItemPickup>();
-
-        Inventory.instance.items.Clear();
-
-        for (int i = 0; i < tempData.itemIds.Length; i++)
-            foreach (ItemPickup itemPickup in itemPickups)
-                if (tempData.itemIds[i] == itemPickup.item.id)
-                    if (itemPickup.item.name == "Health Potion")
-                    {
-                        if (!savedPotions)
-                        {
-                            for (int j = 0; j < tempData.potionsCount; j++)
                                 Inventory.instance.Add(itemPickup.item);
                             savedPotions = true;
                         }

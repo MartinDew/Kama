@@ -142,7 +142,7 @@ public class EquipmentManager : MonoBehaviour
         {
             Unequip(i);
             UnequipPhysicalWeapon();
-            PlayerManager.instance.player.SendMessage("equipWeapon", null);
+            player.SendMessage("equipNoWeapon");
         }
         EquipAllDefault();
     }

@@ -6,7 +6,10 @@ public class CheckButtonsPressed : MonoBehaviour
     GameObject inventory;
     GameObject save;
     GameObject load;
+    public GameObject menu;
+    public AudioSource swordSound;
     AudioSource gameSceneAudio;
+    AudioSource menuSceneAudio;
     private void Start()
     {
         inventory = GameObject.Find("Inventory");
@@ -17,19 +20,50 @@ public class CheckButtonsPressed : MonoBehaviour
         load.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        gameSceneAudio = GameObject.Find("GameManager").GetComponent<AudioSource>();
+        menuSceneAudio = menu.GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown("escape"))
         {
-            Cursor.visible = !Cursor.visible;
-            Cursor.lockState = CursorLockMode.None;
-            GameObject.Find("Player").GetComponent<PlayerComponent>().SaveTemp();
-            SaveWhenPausing.LoadOnUnpause = true;
-            gameSceneAudio = GameObject.Find("GameManager").GetComponent<AudioSource>();
-            gameSceneAudio.mute = true;
-            SceneManager.LoadScene("PauseMenuScene", LoadSceneMode.Additive);
+            if (!menu.activeSelf)
+                activateMenu();
+            else
+                disableMenu();
         }
     }
+
+    public void activateMenu()
+    {
+        menu.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        gameSceneAudio.mute = true;
+        menuSceneAudio.Play();
+        GameObject.Find("Player").GetComponent<PlayerComponent>().SkillConsumption = 0;
+        swordSound.mute = true;
+        Time.timeScale = 0;
+    }
+
+    public void disableMenu()
+    {
+        menu.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        gameSceneAudio.mute = false;
+        menuSceneAudio.Stop();
+        GameObject.Find("Player").GetComponent<PlayerComponent>().SkillConsumption = 5;
+        swordSound.mute = false;
+        Time.timeScale = 1;
+    }
+
+    public void SaveGame()
+    {
+        PlayerComponent player = GameObject.Find("Player").GetComponent<PlayerComponent>();
+        player.SavePlayer();
+    }
+
+    public void ReturnToMainMenu() => SceneManager.LoadScene("MainMenuScene");
 }

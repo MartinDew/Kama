@@ -12,6 +12,7 @@ public class InventorySlot : MonoBehaviour {
 
 	private Item item;	// Current item in the slot
     private GameObject player;
+    private Canvas interactCanvas;
 
     private void Start()
     {
@@ -46,6 +47,11 @@ public class InventorySlot : MonoBehaviour {
         item.gameObject.transform.position = player.transform.position;
         item.gameObject.transform.position = new Vector3(player.transform.position.x + 2, player.transform.position.y + 2, player.transform.position.z + 2);
         item.gameObject.GetComponent<ItemPickup>().enabled = true;
+
+        // Activer le canvas de pickup si il existe
+        interactCanvas = item.gameObject.GetComponentInChildren<Canvas>();
+        if (interactCanvas != null)
+            interactCanvas.enabled = true;
         Inventory.instance.Remove(item);
 	}
 

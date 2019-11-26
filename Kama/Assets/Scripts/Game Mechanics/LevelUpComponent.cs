@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using KamaLib;
+﻿using KamaLib;
 using System;
 using UnityEngine;
 using UnityEngine.UI;

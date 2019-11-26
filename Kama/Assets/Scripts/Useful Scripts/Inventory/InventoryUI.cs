@@ -38,6 +38,7 @@ public class InventoryUI : MonoBehaviour {
                 Cursor.lockState = CursorLockMode.None;
 				save.SetActive(true);
 				load.SetActive(true);
+                GameObject.Find("InventoryTooltip").GetComponent<Text>().text = "Fermer l'inventaire (i)";
             }
             else
             {
@@ -45,6 +46,7 @@ public class InventoryUI : MonoBehaviour {
                 Cursor.lockState = CursorLockMode.Locked;
 				save.SetActive(false);
 				load.SetActive(false);
+                GameObject.Find("InventoryTooltip").GetComponent<Text>().text = "Ouvrir l'inventaire (i)";
             }
             camera.enabled = !camera.enabled;
 			inventoryUI.SetActive(!inventoryUI.activeSelf);
