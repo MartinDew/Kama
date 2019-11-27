@@ -3,6 +3,7 @@ using KamaLib;
 using UnityEngine.UI;
 using System.Collections;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(IHealthComponent))]
 [RequireComponent(typeof(IAttackComponent))]
@@ -22,6 +23,7 @@ public class PlayerComponent : MonoBehaviour
     private GameObject inventory;
     private QuestManager questManager;
     private Text levelText;
+    public GameObject loadingScreen;
     private bool isDead = false;
     private int activeQuest;
 
@@ -45,13 +47,29 @@ public class PlayerComponent : MonoBehaviour
             LevelComponent = GetComponent<ILevelComponent>()
         };
 
+        loadingScreen.SetActive(true);
         if (SaveSystem.LoadOnStart)
-            LoadPlayer();
+            StartCoroutine(LoadMethod());
+        else
+            StartCoroutine(NewGameMethod());
 
         SaveSystem.LoadOnStart = false;
 
         if (activeQuest == 6)
             GameObject.Find("GameManager").GetComponent<QuestManager>().entrance.SetActive(false);
+    }
+
+    IEnumerator LoadMethod()
+    {
+        yield return new WaitForSeconds(1);
+        loadingScreen.SetActive(false);
+        LoadPlayer();
+    }
+
+    IEnumerator NewGameMethod()
+    {
+        yield return new WaitForSeconds(0.5f);
+        loadingScreen.SetActive(false);
     }
     private void Update()
     {
@@ -125,7 +143,6 @@ public class PlayerComponent : MonoBehaviour
             }
         }
     }
-
     private void LoadInventory(PlayerData data)
     {
         bool savedHPPotions = false;
