@@ -1,27 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CheckButtonsPressed : MonoBehaviour
 {
     GameObject inventory;
-    GameObject save;
-    GameObject load;
     public GameObject menu;
     public AudioSource swordSound;
     AudioSource gameSceneAudio;
     AudioSource menuSceneAudio;
+    public Text confirmationText;
     private void Start()
     {
         inventory = GameObject.Find("Inventory");
-        save = GameObject.Find("Save");
-        load = GameObject.Find("Load");
         inventory.SetActive(false);
-        save.SetActive(false);
-        load.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         gameSceneAudio = GameObject.Find("GameManager").GetComponent<AudioSource>();
         menuSceneAudio = menu.GetComponent<AudioSource>();
+        confirmationText.enabled = false;
     }
 
     private void Update()
@@ -31,7 +28,10 @@ public class CheckButtonsPressed : MonoBehaviour
             if (!menu.activeSelf)
                 activateMenu();
             else
+            {
                 disableMenu();
+                confirmationText.enabled = false;
+            }
         }
     }
 
@@ -63,6 +63,7 @@ public class CheckButtonsPressed : MonoBehaviour
     {
         PlayerComponent player = GameObject.Find("Player").GetComponent<PlayerComponent>();
         player.SavePlayer();
+        confirmationText.enabled = true;
     }
 
     public void ReturnToMainMenu() => SceneManager.LoadScene("MainMenuScene");

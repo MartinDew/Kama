@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 /* Sits on all InventorySlots. */
 
@@ -20,28 +18,29 @@ public class InventorySlot : MonoBehaviour {
     }
 
     // Add item to the slot
-    public void AddItem (Item newItem)
+    public void AddItem(Item newItem)
 	{
 		item = newItem;
 		icon.sprite = item.icon;
 		icon.enabled = true;
 
-        if (item.name != "Health Potion")
-		    removeButton.interactable = true;
-	}
+        if (item.name != "Health Potion" && item.name != "Stamina Potion")
+            removeButton.interactable = true;
+        else
+            removeButton.interactable = false;
+    }
 
 	// Clear the slot
-	public void ClearSlot ()
+	public void ClearSlot()
 	{
 		item = null;
-
 		icon.sprite = null;
 		icon.enabled = false;
 		removeButton.interactable = false;
 	}
 
 	// If the remove button is pressed, this function will be called.
-	public void RemoveItemFromInventory ()
+	public void RemoveItemFromInventory()
 	{
         item.gameObject.SetActive(true);
         item.gameObject.transform.position = player.transform.position;
@@ -56,12 +55,11 @@ public class InventorySlot : MonoBehaviour {
 	}
 
 	// Use the item
-	public void UseItem ()
+	public void UseItem()
 	{
 		if (item != null)
 		{
 			item.Use();
 		}
 	}
-
 }

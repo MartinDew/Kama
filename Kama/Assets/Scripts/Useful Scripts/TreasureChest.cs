@@ -41,6 +41,12 @@ public class TreasureChest : Interactable
     {
         isOpen = true;
         Debug.Log("Chest opened");
+
+        if (items[0].name == "Health Potion")
+            msg.text = "Vous avez obtenu une potion de vie!";
+        else if (items[0].name == "Stamina Potion")
+            msg.text = "Vous avez obtenu une potion de stamina!";
+
         StartCoroutine(ShowAndHide(msg, msgBox));
         foreach (Item i in items)
 			Inventory.instance.Add(i);
@@ -48,10 +54,9 @@ public class TreasureChest : Interactable
 
     IEnumerator ShowAndHide(Text msg, Image msgBox)
     {
-        yield return new WaitForSeconds(1.5f);
         msg.enabled = true;
         msgBox.enabled = true;
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(3);
         msg.enabled = false;
         msgBox.enabled = false;
     }

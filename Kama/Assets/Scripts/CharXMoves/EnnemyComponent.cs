@@ -47,7 +47,6 @@ public class EnnemyComponent : MonoBehaviour
         {
             ennemyController.Die();
             StartCoroutine(DestroyTheEnemy());
-            DestroyTheEnemy();
             target.LevelComponent.UpdateEXP(level * LevelClass.enemyEXP);
             Debug.Log($"Player has {target.LevelComponent.CurrentEXP} EXP!");
 
@@ -66,18 +65,16 @@ public class EnnemyComponent : MonoBehaviour
                 audioSource.Play();
 
                 StartCoroutine(ShowWinScreen());
-                ShowWinScreen();
             }
         }
     }
 
     private IEnumerator ShowWinScreen()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(5);
         winScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        swordSound = null;
     }
 
     private IEnumerator DestroyTheEnemy()

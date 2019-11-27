@@ -14,12 +14,15 @@ public class QuestManager : MonoBehaviour
     Text questText;
     bool dungeonDoorOpen = false;
     int activeQuest;
-    string quest1 = "- Trouver le village";
-    string quest2 = "- Parler à Arthur";
-    string quest3 = "- Tuer 5 goblins";
-    string quest4 = "- Aller voir Léa";
-    string quest5 = "- Trouver le donjon";
-    string quest6 = "- Vaincre Kragz!";
+    string[] quests = new string[]
+    {
+        "Trouver le village",
+        "Parler à Arthur",
+        "Tuer 5 goblins",
+        "Aller voir Léa",
+        "Trouver le donjon",
+        "Vaincre Kragz!"
+    };
     public GameObject entrance;
 
     void Awake()
@@ -60,13 +63,13 @@ public class QuestManager : MonoBehaviour
         if (id == 1) // Si la quete active est "Trouver le village"
         {
             activeQuest = id;
-            questText.text = quest1;
+            questText.text = quests[id - 1];
             dungeonDoorOpen = false;
         }
         else if (id == 2) // Si la quete active est "Parler a Arthur"
         {
             activeQuest = id;
-            questText.text = quest2;
+            questText.text = quests[id - 1];
             dungeonDoorOpen = false;
 
             Arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[4];
@@ -81,7 +84,7 @@ public class QuestManager : MonoBehaviour
         else if (id == 3) // Si la quete active est "Tuer 5 goblins" 
         {
             activeQuest = id;
-            questText.text = quest3;
+            questText.text = quests[id - 1];
             dungeonDoorOpen = false;
 
             Arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
@@ -90,7 +93,7 @@ public class QuestManager : MonoBehaviour
         else if (id == 4) // Si la quete active est "Aller voir Lea"
         {
             activeQuest = id;
-            questText.text = quest4;
+            questText.text = quests[id - 1];
             dungeonDoorOpen = false;
 
             Arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
@@ -105,7 +108,7 @@ public class QuestManager : MonoBehaviour
         else if (id == 5) // Si la quete active est "Trouver le donjon" 
         {
             activeQuest = id;
-            questText.text = quest5;
+            questText.text = quests[id - 1];
             dungeonDoorOpen = true;
 
             Arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];
@@ -119,7 +122,7 @@ public class QuestManager : MonoBehaviour
         else if (id == 6) // Si la quete active est "Vaincre Kragz"
         {
             activeQuest = id;
-            questText.text = quest6;
+            questText.text = quests[id - 1];
             dungeonDoorOpen = true;
 
             Arthur.GetComponent<DialogueTrigger>().dialogue.sentences = new string[1];

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Consumable : Item {
 
     public int healthGain;
+    public int staminaGain;
     GameObject player;
 
     // This is called when pressed in the inventory
@@ -13,8 +14,9 @@ public class Consumable : Item {
 	{
         player = GameObject.FindGameObjectWithTag("Main Character");
 
-        // Heal the player
+        // Heal the player or give him stamina
         player.GetComponent<StandartHealthComponent>().Increase(healthGain);
+        player.GetComponent<StaminaComponent>().IncreaseSp(staminaGain);
 
 		Debug.Log(name + " consumed!");
 

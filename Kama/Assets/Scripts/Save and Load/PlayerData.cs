@@ -17,10 +17,10 @@ public class PlayerData
     public float ATK;
 
     public int[] itemIds;
-    public int potionsCount;
+    public int HPpotionsCount;
+    public int SPpotionsCount;
 
     public int activeQuest;
-    public int[] chestsIds;
 
     public string equippedWeapon;
 
@@ -47,7 +47,8 @@ public class PlayerData
 
         // Inventory
         int inventorySize = 0;
-        potionsCount = 0;
+        HPpotionsCount = 0;
+        SPpotionsCount = 0;
         itemIds = new int[Inventory.instance.items.Count];
 
         foreach (Item item in Inventory.instance.items)
@@ -56,8 +57,11 @@ public class PlayerData
             inventorySize++;
 
             if (item.name == "Health Potion")
-                potionsCount++;
+                HPpotionsCount++;
+            else if (item.name == "Stamina Potion")
+                SPpotionsCount++;
         }
+
 
         // Quest
         activeQuest = GameObject.Find("GameManager").GetComponent<QuestManager>().GetActiveQuest();

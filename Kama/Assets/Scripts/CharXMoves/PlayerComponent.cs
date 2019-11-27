@@ -114,17 +114,22 @@ public class PlayerComponent : MonoBehaviour
             LoadInventory(data);
             activeQuest = data.activeQuest;
             GameObject.Find("GameManager").GetComponent<QuestManager>().SetActiveQuest(activeQuest);
-            GameObject weapon = GameObject.Find(data.equippedWeapon);
-            weapon.GetComponent<ItemPickup>().item.gameObject = weapon;
-            weapon.GetComponent<ItemPickup>().item.Use();
-            if (weapon.GetComponentInChildren<Canvas>() != null)
-                weapon.GetComponentInChildren<Canvas>().enabled = false;
+
+            if (data.equippedWeapon != null)
+            {
+                GameObject weapon = GameObject.Find(data.equippedWeapon);
+                weapon.GetComponent<ItemPickup>().item.gameObject = weapon;
+                weapon.GetComponent<ItemPickup>().item.Use();
+                if (weapon.GetComponentInChildren<Canvas>() != null)
+                    weapon.GetComponentInChildren<Canvas>().enabled = false;
+            }
         }
     }
 
     private void LoadInventory(PlayerData data)
     {
-        bool savedPotions = false;
+        bool savedHPPotions = false;
+        bool savedSPPotions = false;
         GameObject collectibles = GameObject.Find("Interactables");
         ItemPickup[] itemPickups = collectibles.GetComponentsInChildren<ItemPickup>();
 
@@ -135,11 +140,20 @@ public class PlayerComponent : MonoBehaviour
                 if (data.itemIds[i] == itemPickup.item.id)
                     if (itemPickup.item.name == "Health Potion")
                     {
-                        if (!savedPotions)
+                        if (!savedHPPotions)
                         {
-                            for (int j = 0; j < data.potionsCount; j++)
+                            for (int j = 0; j < data.HPpotionsCount; j++)
                                 Inventory.instance.Add(itemPickup.item);
-                            savedPotions = true;
+                            savedHPPotions = true;
+                        }
+                    }
+                    else if (itemPickup.item.name == "Stamina Potion")
+                    {
+                        if (!savedSPPotions)
+                        {
+                            for (int j = 0; j < data.SPpotionsCount; j++)
+                                Inventory.instance.Add(itemPickup.item);
+                            savedSPPotions = true;
                         }
                     }
                     else
