@@ -1230,7 +1230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedAmp: 30
   gravity: -90
-  jumpForce: 95
+  jumpForce: 40
   inventoryUI: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &6010375132134530108
