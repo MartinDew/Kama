@@ -9,7 +9,6 @@ public class CheckButtonsPressed : MonoBehaviour
     public AudioSource swordSound;
     AudioSource gameSceneAudio;
     AudioSource menuSceneAudio;
-    public Text confirmationText;
     private void Start()
     {
         inventory = GameObject.Find("Inventory");
@@ -18,7 +17,6 @@ public class CheckButtonsPressed : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         gameSceneAudio = GameObject.Find("GameManager").GetComponent<AudioSource>();
         menuSceneAudio = menu.GetComponent<AudioSource>();
-        confirmationText.enabled = false;
     }
 
     private void Update()
@@ -30,7 +28,6 @@ public class CheckButtonsPressed : MonoBehaviour
             else
             {
                 disableMenu();
-                confirmationText.enabled = false;
             }
         }
     }
@@ -49,6 +46,7 @@ public class CheckButtonsPressed : MonoBehaviour
 
     public void disableMenu()
     {
+        GameObject.Find("ConfirmationText").SetActive(false);
         menu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -63,7 +61,6 @@ public class CheckButtonsPressed : MonoBehaviour
     {
         PlayerComponent player = GameObject.Find("Player").GetComponent<PlayerComponent>();
         player.SavePlayer();
-        confirmationText.enabled = true;
     }
 
     public void ReturnToMainMenu() => SceneManager.LoadScene("MainMenuScene");

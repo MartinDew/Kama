@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,7 +40,6 @@ public class MainMenuComponent : MonoBehaviour
     public void Load()
     {
         SaveSystem.LoadOnStart = true;
-        //SceneManager.UnloadSceneAsync("GameScene");
         SceneManager.LoadScene("GameScene");
     }
 
