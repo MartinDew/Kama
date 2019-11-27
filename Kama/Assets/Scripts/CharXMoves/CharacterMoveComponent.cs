@@ -61,14 +61,12 @@ public class CharacterMoveComponent : MonoBehaviour
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection = moveDirection.normalized * speedAmp;
 
-            // apply gravity
-            vertVelocity += gravity * Time.deltaTime;
-            //vertVelocity = Mathf.Clamp(vertVelocity, gravity, jumpForce);
-            moveDirection.y = vertVelocity;
 
-            //  vertVelocity = 0f;
+
             if (Input.GetButtonDown("Jump") && controller.isGrounded)
             {
+
+                vertVelocity = 0f;
                 anim.SetTrigger("Jump");
                 anim.SetBool("Grounded", false);
 
@@ -81,7 +79,10 @@ public class CharacterMoveComponent : MonoBehaviour
 
             }
 
-
+            // apply gravity
+            vertVelocity += gravity * Time.deltaTime;
+            //vertVelocity = Mathf.Clamp(vertVelocity, gravity, jumpForce);
+            moveDirection.y = vertVelocity;
 
             // Move the character 
             //controller.Move(distance);

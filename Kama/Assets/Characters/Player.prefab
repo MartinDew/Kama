@@ -1215,6 +1215,7 @@ MonoBehaviour:
   gameOverClip: {fileID: 8300000, guid: ed698cf827f68494dba1b6c57f0f13fc, type: 3}
   swordSound: {fileID: 0}
   gameOverScreen: {fileID: 0}
+  loadingScreen: {fileID: 0}
 --- !u!114 &6010375132134530107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,7 +1230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedAmp: 30
   gravity: -90
-  jumpForce: 90
+  jumpForce: 95
   inventoryUI: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &6010375132134530108
